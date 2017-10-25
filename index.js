@@ -4,6 +4,8 @@ const app = express()
 const nodemailer = require('nodemailer');
 const json2html = require('node-json2html');
 const WebSocket = require('ws');
+const DialogflowApp = require('actions-on-google').DialogflowApp; // Google Assistant helper library
+const googleAssistantRequest = 'google'; // Constant to identify Google Assistant requests
 const REQUIRE_AUTH = true
 const AUTH_TOKEN = 'ysc-token';
 //10. Settings

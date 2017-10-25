@@ -15,9 +15,10 @@
       "body-parser": "^1.17.2",
       "express": "^4.15.3",
       "request":"^2.83.0",
-    "nodemailer":"latest",
-    "node-json2html":"latest",
-    "ws":"latest",
-      "path":"latest"
+      "nodemailer":"latest",
+      "node-json2html":"latest",
+      "ws":"latest",
+      "path":"latest",
+      "actions-on-google":"latest"
 }
 }
