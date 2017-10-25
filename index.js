@@ -38,11 +38,28 @@ app.post('/dashboard',function(request,response){
    let responseJson = {};
    // Create handlers for Dialogflow actions as well as a 'default' handler
   const actionHandlers = {
+    //국가별
+    'input.byCountry':() =>{
+      if (requestSource === googleAssistantRequest) {
+        sendGoogleResponse('Heroku webhook action \'byCountry\' [Google]'); // Send simple response to user
+      } else {
+        sendResponse('Heroku webhook action \'byCountry\' '); // Send simple response to user
+      }
+    },
+    //년도별
+    'intpu.byYear':() =>{
+      if (requestSource === googleAssistantRequest) {
+        sendGoogleResponse('Heroku webhook action \'byYear\' [Google]'); // Send simple response to user
+      } else {
+        sendResponse('Heroku webhook action \'byYear\' '); // Send simple response to user
+      }
+    },
+
     // The default welcome intent has been matched, welcome the user (https://dialogflow.com/docs/events#default_welcome_intent)
     'input.welcome': () => {
       // Use the Actions on Google lib to respond to Google requests; for other requests use JSON
       if (requestSource === googleAssistantRequest) {
-        sendGoogleResponse('Hello, Welcome to my Dialogflow agent!to Google Assistant'); // Send simple response to user
+        sendGoogleResponse('Hello, Welcome to my Dialogflow agent! [Google]'); // Send simple response to user
       } else {
         sendResponse('Hello, Welcome to my Dialogflow agent!'); // Send simple response to user
       }
@@ -51,7 +68,7 @@ app.post('/dashboard',function(request,response){
     'input.unknown': () => {
       // Use the Actions on Google lib to respond to Google requests; for other requests use JSON
       if (requestSource === googleAssistantRequest) {
-        sendGoogleResponse('I\'m having trouble, can you try that again?'); // Send simple response to user
+        sendGoogleResponse('I\'m having trouble, can you try that again? [Google]'); // Send simple response to user
       } else {
         sendResponse('I\'m having trouble, can you try that again?'); // Send simple response to user
       }
@@ -63,16 +80,16 @@ app.post('/dashboard',function(request,response){
         let responseToUser = {
           //googleRichResponse: googleRichResponse, // Optional, uncomment to enable
           //googleOutputContexts: ['weather', 2, { ['city']: 'rome' }], // Optional, uncomment to enable
-          speech: 'This message is from Dialogflow\'s Cloud Functions for Firebase editor!', // spoken response
-          displayText: 'This is from Dialogflow\'s Cloud Functions for Firebase editor! :-)' // displayed response
+          speech: 'Your action is not defined yet! [Google]', // spoken response
+          displayText: 'Your action is not defined yet! :-) [Google]' // displayed response
         };
         sendGoogleResponse(responseToUser);
       } else {
         let responseToUser = {
           //richResponses: richResponses, // Optional, uncomment to enable
           //outputContexts: [{'name': 'weather', 'lifespan': 2, 'parameters': {'city': 'Rome'}}], // Optional, uncomment to enable
-          speech: 'This message is from Dialogflow\'s Cloud Functions for Firebase editor!', // spoken response
-          displayText: 'This is from Dialogflow\'s Cloud Functions for Firebase editor! :-)' // displayed response
+          speech: 'Your action is not defined yet!', // spoken response
+          displayText: 'Your action is not defined yet! :-)' // displayed response
         };
         sendResponse(responseToUser);
       }
@@ -86,7 +103,7 @@ app.post('/dashboard',function(request,response){
  actionHandlers[action]();
 
 
-//40. Client 별 rich response
+
 // Function to send correctly formatted Google Assistant responses to Dialogflow which are then sent to the user
  function sendGoogleResponse (responseToUser) {
    if (typeof responseToUser === 'string') {
@@ -107,8 +124,8 @@ app.post('/dashboard',function(request,response){
      if (responseToUser.googleOutputContexts) {
        apiaiApp.setContext(...responseToUser.googleOutputContexts);
      }
-     apiaiApp.ask(googleRichResponse);
-    //  apiaiApp.ask(googleResponse); // Send response to Dialogflow and Google Assistant
+     //apiaiApp.ask(googleRichResponse);
+      apiaiApp.ask(googleResponse); // Send response to Dialogflow and Google Assistant
    }
  }
 
@@ -138,6 +155,18 @@ app.post('/dashboard',function(request,response){
    }
  }
 
+ //Access NorthWind
+  function getInformation(){
+    //action에 따른 처리
+    request({
+    	   url : sURL,
+    	   method:'GET',
+    	   json:true
+     }, function(error, response, body){
+
+     });
+  }
+
  })
  // 요청 처리 끝
 
@@ -145,6 +174,8 @@ app.post('/dashboard',function(request,response){
    console.log('* Webhook service is listening on port:' + app.get('port'))
  })
 
+
+//40. Client 별 rich response
 
 // Construct rich response for Google Assistant
 const apiaiApp = new DialogflowApp();
