@@ -93,7 +93,7 @@ app.post('/dashboard',function(request,response){
      apiaiApp.ask(responseToUser); // Google Assistant response
    } else {
      // If speech or displayText is defined use it to respond
-     let googleResponse = app.buildRichResponse().addSimpleResponse({
+     let googleResponse = apiaiApp.buildRichResponse().addSimpleResponse({
        speech: responseToUser.speech || responseToUser.displayText,
        displayText: responseToUser.displayText || responseToUser.speech
      });
