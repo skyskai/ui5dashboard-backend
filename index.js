@@ -85,12 +85,6 @@ app.post('/dashboard',function(request,response){
  // Map the action name to the correct action handler function and run the function
  actionHandlers[action]();
 
-})
-// 요청 처리 끝
-
-app.listen(app.get('port'), function () {
-  console.log('* Webhook service is listening on port:' + app.get('port'))
-})
 
 //40. Client 별 rich response
 // Function to send correctly formatted Google Assistant responses to Dialogflow which are then sent to the user
@@ -143,7 +137,14 @@ app.listen(app.get('port'), function () {
      response.json(responseJson); // Send response to Dialogflow
    }
  }
-});
+
+ })
+ // 요청 처리 끝
+
+ app.listen(app.get('port'), function () {
+   console.log('* Webhook service is listening on port:' + app.get('port'))
+ })
+
 
 // Construct rich response for Google Assistant
 const app = new DialogflowApp();
