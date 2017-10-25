@@ -27,7 +27,7 @@ app.post('/dashboard',function(request,response){
   let action = request.body.result.action;
   // Get the request source (Google Assistant, Slack, API, etc) and initialize DialogflowApp
    const requestSource = (request.body.originalRequest) ? request.body.originalRequest.source : undefined;
-   const app = new DialogflowApp({request: request, response: response});
+   const apiaiApp = new DialogflowApp({request: request, response: response});
   // Parameters are any entites that API.AI has extracted from the request.
   // See https://api.ai/docs/actions-and-parameters for more.
   const parameters = request.body.result.parameters;
@@ -90,7 +90,7 @@ app.post('/dashboard',function(request,response){
 // Function to send correctly formatted Google Assistant responses to Dialogflow which are then sent to the user
  function sendGoogleResponse (responseToUser) {
    if (typeof responseToUser === 'string') {
-     app.ask(responseToUser); // Google Assistant response
+     apiaiApp.ask(responseToUser); // Google Assistant response
    } else {
      // If speech or displayText is defined use it to respond
      let googleResponse = app.buildRichResponse().addSimpleResponse({
@@ -105,10 +105,10 @@ app.post('/dashboard',function(request,response){
 
      // Optional: add contexts (https://dialogflow.com/docs/contexts)
      if (responseToUser.googleOutputContexts) {
-       app.setContext(...responseToUser.googleOutputContexts);
+       apiaiApp.setContext(...responseToUser.googleOutputContexts);
      }
 
-     app.ask(googleResponse); // Send response to Dialogflow and Google Assistant
+     apiaiApp.ask(googleResponse); // Send response to Dialogflow and Google Assistant
    }
  }
 
