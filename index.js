@@ -147,13 +147,13 @@ app.post('/dashboard',function(request,response){
 
 
 // Construct rich response for Google Assistant
-const app = new DialogflowApp();
-const googleRichResponse = app.buildRichResponse()
+const apiaiApp = new DialogflowApp();
+const googleRichResponse = apiaiApp.buildRichResponse()
  .addSimpleResponse('This is the first simple response for Google Assistant')
  .addSuggestions(
    ['Suggestion Chip', 'Another Suggestion Chip'])
    // Create a basic card and add it to the rich response
- .addBasicCard(app.buildBasicCard(`This is a basic card.  Text in a
+ .addBasicCard(apiaiApp.buildBasicCard(`This is a basic card.  Text in a
 basic card can include "quotes" and most other unicode characters
 including emoji 📱.  Basic cards also support some markdown
 formatting like *emphasis* or _italics_, **strong** or __bold__,
