@@ -12,9 +12,12 @@
     "start": "node index"
   },
   "dependencies": {
-    "actions-on-google": "^1.0.0",
-    "firebase-admin": "^4.2.1",
-    "firebase-functions": "^0.5.7",
-    "apiai": "^4.0.3"
-  }
+      "body-parser": "^1.17.2",
+      "express": "^4.15.3",
+      "request":"^2.83.0",
+    "nodemailer":"latest",
+    "node-json2html":"latest",
+    "ws":"latest",
+      "path":"latest"
+}
 }
