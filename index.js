@@ -78,3 +78,7 @@ app.post('/dashboard',function(request,response){
  actionHandlers[action]();
 
 })
+
+app.listen(app.get('port'), function () {
+  console.log('* Webhook service is listening on port:' + app.get('port'))
+})
