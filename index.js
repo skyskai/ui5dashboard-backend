@@ -13,7 +13,7 @@ const AUTH_TOKEN = 'ysc-token';
 //00. Raw 데이터 읽어
 const sJSONFile = fs.readFileSync("./data/salesNorthwind.json");
 const aSales = JSON.parse(sJSONFile);
-console.log(aSales);
+
 //10. Settings
 app.use(bodyParser.json())
 app.set('port', (process.env.PORT || 5000))
@@ -85,9 +85,10 @@ app.post('/dashboard',function(request,response){
           default:
 
         }
+        console.log(aResult);
         responseJson.speech = JSON.stringify(aResult);
-            responseJson.displayText = responseJson.speech;
-            sendResponse(responseJson);
+        responseJson.displayText = responseJson.speech;
+        sendResponse(responseJson);
         // var q = odata({service: 'http://services.odata.org/Northwind/Northwind.svc/'}).resource('Category_Sales_for_1997','Confections');
         // q.custom('$format','json').get().then(function(res) {
         //     console.log("##odata:");
