@@ -71,16 +71,16 @@ app.post('/dashboard',function(request,response){
       } else {
         // responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
         // responseJson.displayText = responseJson.speech; // displayed response
-        let sURL = "";
+        let aResult = {};
         switch (parameters['SalesCategory']) {
           case 'Country':
-            let aResult = getDataByYear(aSales.SalesByCountry,parameters['Year'])
+            aResult = getDataByYear(aSales.SalesByCountry,parameters['Year'])
             break;
           case 'Category':
-           let aResult = getDataByYear(aSales.SalesByCategory,parameters['Year'])
+            aResult = getDataByYear(aSales.SalesByCategory,parameters['Year'])
             break;
           case 'Product':
-            let aResult = getDataByYear(aSales.SalesByProduct,parameters['Year'])
+            aResult = getDataByYear(aSales.SalesByProduct,parameters['Year'])
             break;
           default:
 
