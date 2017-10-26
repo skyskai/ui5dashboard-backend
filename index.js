@@ -73,8 +73,8 @@ app.post('/dashboard',function(request,response){
             console.log(oResult.CategorySales);
             responseJson.speech = oResult.CategorySales;
             responseJson.displayText = responseJson.speech;
+            sendResponse(responseJson);
           });
-        sendResponse(responseJson);
       }
     },
 
