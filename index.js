@@ -66,10 +66,10 @@ app.post('/dashboard',function(request,response){
         // responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
         // responseJson.displayText = responseJson.speech; // displayed response
         var q = odata({service: 'http://services.odata.org/Northwind/Northwind.svc/'}).resource('Category_Sales_for_1997','Confections');
-        q.get().then(function(response) {
+        q.custom('$format','json').get().then(function(res) {
             console.log("##odata:");
-            console.log(response);
-            responseJson.speech = response;
+            console.log(res);
+            responseJson.speech = res;
           });
         sendResponse(responseJson);
       }
