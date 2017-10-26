@@ -19,6 +19,7 @@
       "node-json2html":"latest",
       "ws":"latest",
       "actions-on-google":"latest",
-      "odata-client":"latest"
+      "odata-client":"latest",
+      "fs":"lates"
 }
 }

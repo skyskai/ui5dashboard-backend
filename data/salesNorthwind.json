@@ -1,0 +1,742 @@
+{"SalesByCountry":
+  [{
+       "Year": 1996,
+       "Country": "Argentina",
+       "Amount": " 3,005.60 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Austria",
+       "Amount": " 5,672.80 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Belgium",
+       "Amount": " 352.60 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Brazil",
+       "Amount": " 29,380.62 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Canada",
+       "Amount": " 2,808.00 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Denmark",
+       "Amount": " 1,968.20 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Finland",
+       "Amount": " 6,345.46 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "France",
+       "Amount": " 16,333.68 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Germany",
+       "Amount": " 18,497.88 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Ireland",
+       "Amount": " 3,822.68 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Italy",
+       "Amount": " 8,127.98 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Mexico",
+       "Amount": " 13,572.80 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Norway",
+       "Amount": " 1,549.60 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Poland",
+       "Amount": " 5,285.52 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Portugal",
+       "Amount": " 1,509.60 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Spain",
+       "Amount": " 3,399.40 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Sweden",
+       "Amount": " 11,465.94 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Switzerland",
+       "Amount": " 6,631.80 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "UK",
+       "Amount": " 25,102.73 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "USA",
+       "Amount": " 21,773.17 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1996,
+       "Country": "Venezuela",
+       "Amount": " 21,477.92 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Argentina",
+       "Amount": " 7,131.52 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Austria",
+       "Amount": " 25,990.13 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Belgium",
+       "Amount": " 34,889.89 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Brazil",
+       "Amount": " 61,324.77 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Canada",
+       "Amount": " 31,048.31 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Denmark",
+       "Amount": " 19,468.40 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Finland",
+       "Amount": " 15,314.86 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "France",
+       "Amount": " 62,851.45 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Germany",
+       "Amount": " 95,072.61 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Ireland",
+       "Amount": " 19,333.45 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Italy",
+       "Amount": " 7,672.90 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Mexico",
+       "Amount": " 20,833.88 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Norway",
+       "Amount": " 4,862.40 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Poland",
+       "Amount": " 8,604.57 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Portugal",
+       "Amount": " 13,005.03 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Spain",
+       "Amount": " 17,282.35 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Sweden",
+       "Amount": " 17,514.51 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Switzerland",
+       "Amount": " 9,313.12 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "UK",
+       "Amount": " 33,735.35 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "USA",
+       "Amount": " 96,220.57 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1997,
+       "Country": "Venezuela",
+       "Amount": " 15,615.13 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Argentina",
+       "Amount": " 9,450.11 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Austria",
+       "Amount": " 15,040.07 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Belgium",
+       "Amount": " 20,808.09 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Brazil",
+       "Amount": " 59,808.89 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Canada",
+       "Amount": " 14,489.49 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Denmark",
+       "Amount": " 4,460.95 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Finland",
+       "Amount": " 12,287.07 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "France",
+       "Amount": " 29,404.43 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Germany",
+       "Amount": " 55,020.01 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Ireland",
+       "Amount": " 13,446.08 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Italy",
+       "Amount": " 17,216.50 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Mexico",
+       "Amount": " 9,842.80 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Norway",
+       "Amount": " 2,729.50 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Poland",
+       "Amount": " 858.00 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Portugal",
+       "Amount": " 2,715.71 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Spain",
+       "Amount": " 25,512.46 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Sweden",
+       "Amount": " 29,563.38 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Switzerland",
+       "Amount": " 1,056.50 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "UK",
+       "Amount": " 22,142.71 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "USA",
+       "Amount": " 77,491.00 ",
+       "Currency": " USD "
+     },
+     {
+       "Year": 1998,
+       "Country": "Venezuela",
+       "Amount": " 17,280.13 ",
+       "Currency": " USD "
+     }],
+"SalesByCategory":
+[{
+   "Year": 1996,
+   "Category": "Grains/Cereals",
+   "Amount": " 7,970.20 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Category": "Dairy Products",
+   "Amount": " 21,100.60 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Category": "Condiments",
+   "Amount": " 9,010.30 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Category": "Seafood",
+   "Amount": " 14,189.10 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Category": "Produce",
+   "Amount": " 9,438.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Category": "Confections",
+   "Amount": " 17,742.30 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Category": "Beverages",
+   "Amount": " 32,216.40 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Category": "Meat/Poultry",
+   "Amount": " 18,479.80 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Category": "Grains/Cereals",
+   "Amount": " 84,588.70 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Category": "Dairy Products",
+   "Amount": " 134,900.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Category": "Condiments",
+   "Amount": " 76,001.80 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Category": "Seafood",
+   "Amount": " 67,010.40 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Category": "Produce",
+   "Amount": " 67,393.40 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Category": "Confections",
+   "Amount": " 121,772.68 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Category": "Beverages",
+   "Amount": " 89,727.60 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Category": "Meat/Poultry",
+   "Amount": " 98,700.38 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Category": "Grains/Cereals",
+   "Amount": " 43,458.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Category": "Dairy Products",
+   "Amount": " 77,293.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Category": "Condiments",
+   "Amount": " 32,167.30 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Category": "Seafood",
+   "Amount": " 64,699.52 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Category": "Produce",
+   "Amount": " 45,918.10 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Category": "Confections",
+   "Amount": " 79,114.74 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Category": "Beverages",
+   "Amount": " 178,458.50 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Category": "Meat/Poultry",
+   "Amount": " 41,639.42 ",
+   "Currency": "USD"
+ }],
+"SalesByProduct":
+[{
+   "Year": 1996,
+   "Product": "Chartreuse verte",
+   "Amount": " 2,044.80 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Product": "Guaraná Fantástica",
+   "Amount": " 504.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Product": "Chang",
+   "Amount": " 2,827.20 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Product": "Outback Lager",
+   "Amount": " 1,632.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Product": "Lakkalikööri",
+   "Amount": " 950.40 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Product": "Rhönbräu Klosterbier",
+   "Amount": " 706.80 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Product": "Laughing Lumberjack Lager",
+   "Amount": " 56.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Product": "Chai",
+   "Amount": " 1,800.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Product": "Steeleye Stout",
+   "Amount": " 3,024.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Product": "Sasquatch Ale",
+   "Amount": " 1,008.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Product": "Ipoh Coffee",
+   "Amount": " 2,907.20 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1996,
+   "Product": "Côte de Blaye",
+   "Amount": " 14,756.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Product": "Chartreuse verte",
+   "Amount": " 1,994.40 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Product": "Guaraná Fantástica",
+   "Amount": " 1,206.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Product": "Chang",
+   "Amount": " 3,686.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Product": "Outback Lager",
+   "Amount": " 3,369.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Product": "Lakkalikööri",
+   "Amount": " 3,693.60 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Product": "Rhönbräu Klosterbier",
+   "Amount": " 3,713.80 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Product": "Laughing Lumberjack Lager",
+   "Amount": " 910.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Product": "Chai",
+   "Amount": " 3,387.60 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Product": "Steeleye Stout",
+   "Amount": " 3,060.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Product": "Sasquatch Ale",
+   "Amount": " 812.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Product": "Ipoh Coffee",
+   "Amount": " 4,802.40 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1997,
+   "Product": "Côte de Blaye",
+   "Amount": " 14,229.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Product": "Chartreuse verte",
+   "Amount": " 4,248.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Product": "Guaraná Fantástica",
+   "Amount": " 1,579.50 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Product": "Chang",
+   "Amount": " 3,040.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Product": "Outback Lager",
+   "Amount": " 2,235.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Product": "Lakkalikööri",
+   "Amount": " 5,688.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Product": "Rhönbräu Klosterbier",
+   "Amount": " 2,906.25 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Product": "Laughing Lumberjack Lager",
+   "Amount": " 770.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Product": "Chai",
+   "Amount": " 2,628.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Product": "Steeleye Stout",
+   "Amount": " 2,466.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Product": "Sasquatch Ale",
+   "Amount": " 3,290.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Product": "Ipoh Coffee",
+   "Amount": " 3,726.00 ",
+   "Currency": "USD"
+ },
+ {
+   "Year": 1998,
+   "Product": "Côte de Blaye",
+   "Amount": " 56,652.50 ",
+   "Currency": "USD"
+ }]
+}

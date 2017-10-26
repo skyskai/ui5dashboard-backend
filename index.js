@@ -5,10 +5,15 @@ const json2html = require('node-json2html');
 const WebSocket = require('ws');
 const DialogflowApp = require('actions-on-google').DialogflowApp; // Google Assistant helper library
 const odata = require('odata-client');
+const fs = require('fs');
 const app = express();
 const googleAssistantRequest = 'google'; // Constant to identify Google Assistant requests
 const REQUIRE_AUTH = true
 const AUTH_TOKEN = 'ysc-token';
+//00. Raw 데이터 읽어
+const sJSONFile = fs.readFileSync("./data/salesNorthwind.json");
+const aSales = JSON.parse(sJSONFile);
+console.log(aSales);
 //10. Settings
 app.use(bodyParser.json())
 app.set('port', (process.env.PORT || 5000))
@@ -26,6 +31,7 @@ app.post('/dashboard',function(request,response){
   // in fulfillment usally based on the corresponding intent.
   // See https://api.ai/docs/actions-and-parameters for more.
   let action = request.body.result.action;
+  let requestOriginal = request.body.result.resolvedQuery;
   // Get the request source (Google Assistant, Slack, API, etc) and initialize DialogflowApp
    const requestSource = (request.body.originalRequest) ? request.body.originalRequest.source : undefined;
    const apiaiApp = new DialogflowApp({request: request, response: response});
@@ -65,16 +71,33 @@ app.post('/dashboard',function(request,response){
       } else {
         // responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
         // responseJson.displayText = responseJson.speech; // displayed response
-        var q = odata({service: 'http://services.odata.org/Northwind/Northwind.svc/'}).resource('Category_Sales_for_1997','Confections');
-        q.custom('$format','json').get().then(function(res) {
-            console.log("##odata:");
+        let sURL = "";
+        switch (parameters['SalesCategory']) {
+          case 'Country':
+            let aResult = getDataByYear(aSales.SalesByCountry,parameters['Year'])
+            break;
+          case 'Category':
+           let aResult = getDataByYear(aSales.SalesByCategory,parameters['Year'])
+            break;
+          case 'Product':
+            let aResult = getDataByYear(aSales.SalesByProduct,parameters['Year'])
+            break;
+          default:
 
-            let oResult = JSON.parse(res.body);
-            console.log(oResult.CategorySales);
-            responseJson.speech = oResult.CategorySales;
+        }
+        responseJson.speech = JSON.stringify(aResult);
             responseJson.displayText = responseJson.speech;
             sendResponse(responseJson);
-          });
+        // var q = odata({service: 'http://services.odata.org/Northwind/Northwind.svc/'}).resource('Category_Sales_for_1997','Confections');
+        // q.custom('$format','json').get().then(function(res) {
+        //     console.log("##odata:");
+        //
+        //     let oResult = JSON.parse(res.body);
+        //     console.log(oResult.CategorySales);
+        //     responseJson.speech = oResult.CategorySales;
+        //     responseJson.displayText = responseJson.speech;
+        //     sendResponse(responseJson);
+        //   });
       }
     },
 
@@ -124,7 +147,15 @@ app.post('/dashboard',function(request,response){
 
  // Map the action name to the correct action handler function and run the function
  actionHandlers[action]();
-
+//Country, Category, Product의 년도별 Sales
+ function getDataByYear(aSales,iYear){
+ 	let oFound = aSales.filter(function(obj){
+ 	if(obj.Year === iYear){
+ 		return obj;
+ 	}
+   })
+   return oFound;
+ }
 
 
 // Function to send correctly formatted Google Assistant responses to Dialogflow which are then sent to the user
