@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 const json2html = require('node-json2html');
 const WebSocket = require('ws');
 const DialogflowApp = require('actions-on-google').DialogflowApp; // Google Assistant helper library
+const odata = require('odata-client');
 const app = express();
 const googleAssistantRequest = 'google'; // Constant to identify Google Assistant requests
 const REQUIRE_AUTH = true
@@ -31,6 +32,7 @@ app.post('/dashboard',function(request,response){
   // Parameters are any entites that API.AI has extracted from the request.
   // See https://api.ai/docs/actions-and-parameters for more.
   const parameters = request.body.result.parameters;
+
 
   // Contexts are objects used to track and store conversation state and are identified by strings.
   // See https://api.ai/docs/contexts for more.
@@ -61,10 +63,15 @@ app.post('/dashboard',function(request,response){
         responseJson.displayText = responseJson.speech; // displayed response
         sendGoogleResponse(responseJson); // Send simple response to user
       } else {
-        responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
-        responseJson.displayText = responseJson.speech; // displayed response
-        sendResponse(responseJson); // Send simple response to user
-
+        // responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
+        // responseJson.displayText = responseJson.speech; // displayed response
+        var q = odata({service: 'http://services.odata.org/Northwind/Northwind.svc/', resources: 'Category_Sales_for_1997','Confections'});
+        q.get().then(function(response) {
+            console.log("##odata:");
+            console.log(response);
+            responseJson.speech = response;
+          });
+        sendResponse(responseJson);
       }
     },
 
