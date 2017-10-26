@@ -72,19 +72,20 @@ app.post('/dashboard',function(request,response){
         // responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
         // responseJson.displayText = responseJson.speech; // displayed response
         let aResult;
+        let iYear = parameters['Year'].substring(0,4) * 1;
         console.log(parameters['SalesCategory']);
         console.log(aSales.SalesByCountry);
         console.log(parameters['Year']);
 
         switch (parameters['SalesCategory']) {
           case 'Country':
-            aResult = getDataByYear(aSales.SalesByCountry,parameters['Year'])
+            aResult = getDataByYear(aSales.SalesByCountry,iYear)
             break;
           case 'Category':
-            aResult = getDataByYear(aSales.SalesByCategory,parameters['Year'])
+            aResult = getDataByYear(aSales.SalesByCategory,iYear)
             break;
           case 'Product':
-            aResult = getDataByYear(aSales.SalesByProduct,parameters['Year'])
+            aResult = getDataByYear(aSales.SalesByProduct,iYear)
             break;
           default:
 
