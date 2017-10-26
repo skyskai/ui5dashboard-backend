@@ -94,16 +94,6 @@ app.post('/dashboard',function(request,response){
         responseJson.speech = JSON.stringify(aResult);
         responseJson.displayText = responseJson.speech;
         sendResponse(responseJson);
-        // var q = odata({service: 'http://services.odata.org/Northwind/Northwind.svc/'}).resource('Category_Sales_for_1997','Confections');
-        // q.custom('$format','json').get().then(function(res) {
-        //     console.log("##odata:");
-        //
-        //     let oResult = JSON.parse(res.body);
-        //     console.log(oResult.CategorySales);
-        //     responseJson.speech = oResult.CategorySales;
-        //     responseJson.displayText = responseJson.speech;
-        //     sendResponse(responseJson);
-        //   });
       }
     },
 
@@ -153,6 +143,29 @@ app.post('/dashboard',function(request,response){
 
  // Map the action name to the correct action handler function and run the function
  actionHandlers[action]();
+ sendResponseToWebsocket(responseToUser;)
+ //Websocket용 app에 전달
+ sendResponseToWebsocket:function(responseToUser){
+    process.stdin.resume();
+		process.stdin.setEncoding('utf8');
+   ws.send(JSON.stringify(responseToUser), console.log.bind(null, 'Sent : ', JSON.stringify(responseToUser)));
+	process.stdin.on('data', function(message) {
+	  message = message.trim();
+	  ws.send(message, console.log.bind(null, 'Sent : ', message));
+	});
+
+	ws.on('message', function(message) {
+	  console.log('Received: ' + message);
+	});
+
+	ws.on('close', function(code) {
+	  console.log('Disconnected: ' + code);
+	});
+
+	ws.on('error', function(error) {
+	  console.log('Error: ' + error.code);
+	});
+ }
 //Country, Category, Product의 년도별 Sales
  function getDataByYear(aSales,iYear){
  	let oFound = aSales.filter(function(obj){
