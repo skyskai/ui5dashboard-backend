@@ -80,6 +80,8 @@ app.post('/dashboard',function(request,response){
           break;
         default:
       }
+      responseJson.forUIresults = JSON.stringify(aResult);
+      responseJson.forUIRequest = requestOriginal;
 
       if (requestSource === googleAssistantRequest) {
         switch (parameters['SalesCategory']) {
@@ -88,25 +90,19 @@ app.post('/dashboard',function(request,response){
             responseJson.speech = 'In ' + iYear + ', sales of 3 countries,' + aResult[0].Country + ',' + aResult[1].Country + ' and ' + aResult[2].Country +
                                   ' is bigger than others';
             responseJson.displayText = responseJson.speech; // displayed response
-            responseJson.forUIresults = JSON.stringify(aResult);
-            responseJson.forUIRequest = requestOriginal;
+
             break;
           case 'Category':
             aResult.sort(custonSort);
             responseJson.speech = 'In ' + iYear + ', sales of 3 categories,' + aResult[0].Category + ',' + aResult[1].Category + ' and ' + aResult[2].Category +
                                ' is bigger than others';
              responseJson.displayText = responseJson.speech; // displayed response
-             responseJson.forUIresults = JSON.stringify(aResult);
-             responseJson.forUIRequest = requestOriginal;
             break;
           case 'Product':
             aResult.sort(custonSort);
              responseJson.speech = 'In ' + iYear + ', sales of 3 products,' + aResult[0].Product + ',' + aResult[1].Product + ' and ' + aResult[2].Product +
                                ' is bigger than others';
              responseJson.displayText = responseJson.speech; // displayed response
-             responseJson.forUIresults = JSON.stringify(aResult);
-             responseJson.forUIRequest = requestOriginal;
-
             break;
           default:
         }
