@@ -96,7 +96,7 @@ app.post('/dashboard',function(request,response){
         responseJson.displayText = responseJson.speech;
         sendResponse(responseJson);
       }
-      sendResponseToWebsocket(responseToUser);
+
     },
 
     // The default welcome intent has been matched, welcome the user (https://dialogflow.com/docs/events#default_welcome_intent)
@@ -145,7 +145,7 @@ app.post('/dashboard',function(request,response){
 
  // Map the action name to the correct action handler function and run the function
  actionHandlers[action]();
-
+ sendResponseToWebsocket(responseJson);
  //Websocket용 app에 전달
  function sendResponseToWebsocket(responseToUser){
     process.stdin.resume();
