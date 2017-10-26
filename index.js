@@ -68,8 +68,9 @@ app.post('/dashboard',function(request,response){
         var q = odata({service: 'http://services.odata.org/Northwind/Northwind.svc/'}).resource('Category_Sales_for_1997','Confections');
         q.custom('$format','json').get().then(function(res) {
             console.log("##odata:");
-            console.log(res);
-            responseJson.speech = res;
+            console.log(res.body);
+            responseJson.speech = res.body;
+            responseJson.displayText = responseJson.speech;
           });
         sendResponse(responseJson);
       }
