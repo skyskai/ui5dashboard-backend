@@ -71,7 +71,7 @@ app.post('/dashboard',function(request,response){
       } else {
         // responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
         // responseJson.displayText = responseJson.speech; // displayed response
-        let aResult = {};
+        let aResult;
         switch (parameters['SalesCategory']) {
           case 'Country':
             aResult = getDataByYear(aSales.SalesByCountry,parameters['Year'])
@@ -151,10 +151,8 @@ app.post('/dashboard',function(request,response){
 //Country, Category, Product의 년도별 Sales
  function getDataByYear(aSales,iYear){
  	let oFound = aSales.filter(function(obj){
- 	if(obj.Year === iYear){
- 		return obj;
- 	}
-   })
+             	if(obj.Year === iYear){
+             		return obj;	}})
    return oFound;
  }
 
