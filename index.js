@@ -65,7 +65,7 @@ app.post('/dashboard',function(request,response){
       } else {
         // responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
         // responseJson.displayText = responseJson.speech; // displayed response
-        var q = odata({service: 'http://services.odata.org/Northwind/Northwind.svc/', resources: 'Category_Sales_for_1997','Confections'});
+        var q = odata({service: 'http://services.odata.org/Northwind/Northwind.svc/'}).resources('Category_Sales_for_1997','Confections');
         q.get().then(function(response) {
             console.log("##odata:");
             console.log(response);
