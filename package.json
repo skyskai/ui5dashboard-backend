@@ -17,8 +17,7 @@
       "request":"^2.83.0",
       "nodemailer":"latest",
       "node-json2html":"latest",
-      "ws":"latest",
-      "path":"latest",
+      "ws":"latest",    
       "actions-on-google":"latest"
 }
 }

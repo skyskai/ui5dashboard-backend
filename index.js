@@ -1,10 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const app = express()
 const nodemailer = require('nodemailer');
 const json2html = require('node-json2html');
 const WebSocket = require('ws');
 const DialogflowApp = require('actions-on-google').DialogflowApp; // Google Assistant helper library
+const app = express();
 const googleAssistantRequest = 'google'; // Constant to identify Google Assistant requests
 const REQUIRE_AUTH = true
 const AUTH_TOKEN = 'ysc-token';
@@ -47,11 +47,22 @@ app.post('/dashboard',function(request,response){
       }
     },
     //년도별
-    'intpu.byYear':() =>{
+    'input.byYear':() =>{
       if (requestSource === googleAssistantRequest) {
         sendGoogleResponse('Heroku webhook action \'byYear\' [Google]'); // Send simple response to user
       } else {
         sendResponse('Heroku webhook action \'byYear\' '); // Send simple response to user
+      }
+    },
+    //SalesCategory(Country, Category, Product)와 년도 기준 Sales
+    'input.SalesCategory_Year':() =>{
+      if (requestSource === googleAssistantRequest) {
+        sendGoogleResponse('Heroku webhook action \'byYear\' [Google]'); // Send simple response to user
+      } else {
+        responseJson.speech = 'Year is '+ parameters['date-period'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
+        responseJson.displayText = responseJson.speech; // displayed response
+        sendResponse(responseJson); // Send simple response to user
+
       }
     },
 
