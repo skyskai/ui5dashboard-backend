@@ -57,9 +57,11 @@ app.post('/dashboard',function(request,response){
     //SalesCategory(Country, Category, Product)와 년도 기준 Sales
     'input.SalesCategory_Year':() =>{
       if (requestSource === googleAssistantRequest) {
-        sendGoogleResponse('Heroku webhook action \'byYear\' [Google]'); // Send simple response to user
+        responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
+        responseJson.displayText = responseJson.speech; // displayed response
+        sendGoogleResponse(responseJson); // Send simple response to user
       } else {
-        responseJson.speech = 'Year is '+ parameters['date-period'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
+        responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
         responseJson.displayText = responseJson.speech; // displayed response
         sendResponse(responseJson); // Send simple response to user
 
