@@ -143,7 +143,7 @@ app.post('/dashboard',function(request,response){
 
  // Map the action name to the correct action handler function and run the function
  actionHandlers[action]();
- sendResponseToWebsocket(responseToUser;)
+ sendResponseToWebsocket(responseToUser);
  //Websocket용 app에 전달
  sendResponseToWebsocket:function(responseToUser){
     process.stdin.resume();
