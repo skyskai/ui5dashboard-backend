@@ -17,7 +17,8 @@
       "request":"^2.83.0",
       "nodemailer":"latest",
       "node-json2html":"latest",
-      "ws":"latest",    
-      "actions-on-google":"latest"
+      "ws":"latest",
+      "actions-on-google":"latest",
+      "odata-client":"latest"
 }
 }
