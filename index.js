@@ -67,15 +67,13 @@ app.post('/dashboard',function(request,response){
     'input.SalesCategory_Year':() =>{
       let aResult;
       let iYear = parameters['Year'].substring(0,4) * 1;
-      function custonSort(a, b) {
-          if(a.Amount == b.Amount){ return 0} return  a.Amount < b.Amount ? 1 : -1;
-        }
+
       if (requestSource === googleAssistantRequest) {
         switch (parameters['SalesCategory']) {
           case 'Country':
             aResult = getDataByYear(aSales.SalesByCountry,iYear);
             aResult.sort(custonSort);
-            responseJson.speech = 'In' + iYear + ', sales of 3 countries,' + aResult[0].Country + ',' + aResult[1].Country + ' and ' + aResult[2].Country +
+            responseJson.speech = 'In ' + iYear + ', sales of 3 countries,' + aResult[0].Country + ',' + aResult[1].Country + ' and ' + aResult[2].Country +
                                   ' is bigger than others';
             responseJson.displayText = responseJson.speech; // displayed response
             break;
@@ -83,14 +81,14 @@ app.post('/dashboard',function(request,response){
             aResult = getDataByYear(aSales.SalesByCategory,iYear);
             aResult.sort(custonSort);
 
-            responseJson.speech = 'In' + iYear + ', sales of 3 categories,' + aResult[0].Category + ',' + aResult[1].Category + ' and ' + aResult[2].Category +
+            responseJson.speech = 'In ' + iYear + ', sales of 3 categories,' + aResult[0].Category + ',' + aResult[1].Category + ' and ' + aResult[2].Category +
                                ' is bigger than others';
              responseJson.displayText = responseJson.speech; // displayed response
             break;
           case 'Product':
             aResult = getDataByYear(aSales.SalesByProduct,iYear);
             aResult.sort(custonSort);
-            responseJson.speech = 'In' + iYear + ', sales of 3 products,' + aResult[0].Product + ',' + aResult[1].Product + ' and ' + aResult[2].Product +
+            responseJson.speech = 'In ' + iYear + ', sales of 3 products,' + aResult[0].Product + ',' + aResult[1].Product + ' and ' + aResult[2].Product +
                                ' is bigger than others';
              responseJson.displayText = responseJson.speech; // displayed response
             break;
@@ -170,6 +168,10 @@ app.post('/dashboard',function(request,response){
  actionHandlers[action]();
  //Websocket 서버에 전달
  sendResponseToWebsocket(responseJson);
+ //금액 기준 역순 소팅
+ function custonSort(a, b) {
+     if(a.Amount == b.Amount){ return 0} return  a.Amount < b.Amount ? 1 : -1;
+   }
  //Websocket 서버에 전달
  function sendResponseToWebsocket(responseToUser){
     process.stdin.resume();
