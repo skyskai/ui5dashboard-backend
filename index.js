@@ -69,7 +69,7 @@ app.post('/dashboard',function(request,response){
         q.custom('$format','json').get().then(function(res) {
             console.log("##odata:");
             console.log(res.body);
-            responseJson.speech = res.body;
+            responseJson.speech = res.body.CategorySales;
             responseJson.displayText = responseJson.speech;
           });
         sendResponse(responseJson);
