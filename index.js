@@ -145,7 +145,7 @@ app.post('/dashboard',function(request,response){
  actionHandlers[action]();
  sendResponseToWebsocket(responseToUser);
  //Websocket용 app에 전달
- sendResponseToWebsocket:function(responseToUser){
+ function sendResponseToWebsocket(responseToUser){
     process.stdin.resume();
 		process.stdin.setEncoding('utf8');
    ws.send(JSON.stringify(responseToUser), console.log.bind(null, 'Sent : ', JSON.stringify(responseToUser)));
