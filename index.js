@@ -65,18 +65,35 @@ app.post('/dashboard',function(request,response){
     },
     //SalesCategory(Country, Category, Product)와 년도 기준 Sales
     'input.SalesCategory_Year':() =>{
+      let aResult;
+      let iYear = parameters['Year'].substring(0,4) * 1;
       if (requestSource === googleAssistantRequest) {
-        responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
-        responseJson.displayText = responseJson.speech; // displayed response
+        switch (parameters['SalesCategory']) {
+          case 'Country':
+            aResult = getDataByYear(aSales.SalesByCountry,iYear)
+            responseJson.speech = 'In' + iYear + ', sales of 3 countries,' aResult[0].Country + ',' + aResult[1].Country + ' and ' + aResult[2].Country +
+                                  ' is bigger than others';
+            responseJson.displayText = responseJson.speech; // displayed response
+            break;
+          case 'Category':
+            aResult = getDataByYear(aSales.SalesByCategory,iYear)
+            responseJson.speech = 'In' + iYear + ', sales of 3 categories,' aResult[0].Category + ',' + aResult[1].Category + ' and ' + aResult[2].Category +
+                               ' is bigger than others';
+             responseJson.displayText = responseJson.speech; // displayed response
+            break;
+          case 'Product':
+            aResult = getDataByYear(aSales.SalesByProduct,iYear)
+            responseJson.speech = 'In' + iYear + ', sales of 3 products,' aResult[0].Product + ',' + aResult[1].Product + ' and ' + aResult[2].Product +
+                               ' is bigger than others';
+             responseJson.displayText = responseJson.speech; // displayed response
+            break;
+          default:
+        }
         sendGoogleResponse(responseJson); // Send simple response to user
       } else {
         // responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
         // responseJson.displayText = responseJson.speech; // displayed response
-        let aResult;
-        let iYear = parameters['Year'].substring(0,4) * 1;
-        console.log(parameters['SalesCategory']);
-        console.log(aSales.SalesByCountry);
-        console.log(parameters['Year']);
+
 
         switch (parameters['SalesCategory']) {
           case 'Country':
@@ -89,9 +106,8 @@ app.post('/dashboard',function(request,response){
             aResult = getDataByYear(aSales.SalesByProduct,iYear)
             break;
           default:
-
         }
-        console.log(aResult);
+
         responseJson.speech = JSON.stringify(aResult);
         responseJson.displayText = responseJson.speech;
         sendResponse(responseJson);
@@ -145,15 +161,17 @@ app.post('/dashboard',function(request,response){
 
  // Map the action name to the correct action handler function and run the function
  actionHandlers[action]();
+ //Websocket 서버에 전달
  sendResponseToWebsocket(responseJson);
- //Websocket용 app에 전달
+ //Websocket 서버에 전달
  function sendResponseToWebsocket(responseToUser){
     process.stdin.resume();
 		process.stdin.setEncoding('utf8');
-   ws.send(JSON.stringify(responseToUser), console.log.bind(null, 'Sent : ', JSON.stringify(responseToUser)));
+   ws.send(JSON.stringify(responseToUser));//, console.log.bind(null, 'Sent : ', JSON.stringify(responseToUser)));
+
 	process.stdin.on('data', function(message) {
 	  message = message.trim();
-	  ws.send(message, console.log.bind(null, 'Sent : ', message));
+	  ws.send(message);//, console.log.bind(null, 'Sent : ', message));
 	});
 
 	ws.on('message', function(message) {
