@@ -67,6 +67,7 @@ app.post('/dashboard',function(request,response){
     'input.SalesCategory_Year':() =>{
       let aResult;
       let iYear = parameters['Year'].substring(0,4) * 1;
+      //조건에 해당하는 값을 읽어오기
       switch (parameters['SalesCategory']) {
         case 'Country':
           aResult = getDataByYear(aSales.SalesByCountry,iYear)
