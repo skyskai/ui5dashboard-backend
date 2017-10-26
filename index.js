@@ -72,6 +72,10 @@ app.post('/dashboard',function(request,response){
         // responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
         // responseJson.displayText = responseJson.speech; // displayed response
         let aResult;
+        console.log(parameters['SalesCategory']);
+        console.log(aSales.SalesByCountry);
+        console.log(parameters['Year']);
+
         switch (parameters['SalesCategory']) {
           case 'Country':
             aResult = getDataByYear(aSales.SalesByCountry,parameters['Year'])
