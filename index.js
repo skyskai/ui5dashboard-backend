@@ -67,36 +67,44 @@ app.post('/dashboard',function(request,response){
     'input.SalesCategory_Year':() =>{
       let aResult;
       let iYear = parameters['Year'].substring(0,4) * 1;
+      switch (parameters['SalesCategory']) {
+        case 'Country':
+          aResult = getDataByYear(aSales.SalesByCountry,iYear)
+          break;
+        case 'Category':
+          aResult = getDataByYear(aSales.SalesByCategory,iYear)
+          break;
+        case 'Product':
+          aResult = getDataByYear(aSales.SalesByProduct,iYear)
+          break;
+        default:
+      }
 
       if (requestSource === googleAssistantRequest) {
         switch (parameters['SalesCategory']) {
           case 'Country':
-            aResult = getDataByYear(aSales.SalesByCountry,iYear);
             aResult.sort(custonSort);
             responseJson.speech = 'In ' + iYear + ', sales of 3 countries,' + aResult[0].Country + ',' + aResult[1].Country + ' and ' + aResult[2].Country +
                                   ' is bigger than others';
             responseJson.displayText = responseJson.speech; // displayed response
-            responseJson.results = JSON.stringify(aResult);
-            responseJson.requestOriginal = requestOriginal;
+            responseJson.forUIresults = JSON.stringify(aResult);
+            responseJson.forUIRequest = requestOriginal;
             break;
           case 'Category':
-            aResult = getDataByYear(aSales.SalesByCategory,iYear);
             aResult.sort(custonSort);
-
             responseJson.speech = 'In ' + iYear + ', sales of 3 categories,' + aResult[0].Category + ',' + aResult[1].Category + ' and ' + aResult[2].Category +
                                ' is bigger than others';
              responseJson.displayText = responseJson.speech; // displayed response
-             responseJson.results = JSON.stringify(aResult);
-             responseJson.requestOriginal = requestOriginal;
+             responseJson.forUIresults = JSON.stringify(aResult);
+             responseJson.forUIRequest = requestOriginal;
             break;
           case 'Product':
-            aResult = getDataByYear(aSales.SalesByProduct,iYear);
             aResult.sort(custonSort);
              responseJson.speech = 'In ' + iYear + ', sales of 3 products,' + aResult[0].Product + ',' + aResult[1].Product + ' and ' + aResult[2].Product +
                                ' is bigger than others';
              responseJson.displayText = responseJson.speech; // displayed response
-             responseJson.results = JSON.stringify(aResult);
-             responseJson.requestOriginal = requestOriginal;
+             responseJson.forUIresults = JSON.stringify(aResult);
+             responseJson.forUIRequest = requestOriginal;
 
             break;
           default:
@@ -105,21 +113,6 @@ app.post('/dashboard',function(request,response){
       } else {
         // responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
         // responseJson.displayText = responseJson.speech; // displayed response
-
-
-        switch (parameters['SalesCategory']) {
-          case 'Country':
-            aResult = getDataByYear(aSales.SalesByCountry,iYear)
-            break;
-          case 'Category':
-            aResult = getDataByYear(aSales.SalesByCategory,iYear)
-            break;
-          case 'Product':
-            aResult = getDataByYear(aSales.SalesByProduct,iYear)
-            break;
-          default:
-        }
-
         responseJson.speech = JSON.stringify(aResult);
         responseJson.displayText = responseJson.speech;
         sendResponse(responseJson);
