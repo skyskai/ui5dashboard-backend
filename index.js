@@ -67,6 +67,7 @@ app.post('/dashboard',function(request,response){
     'input.SalesCategory_Year':() =>{
       let aResult;
       let iYear = parameters['Year'].substring(0,4) * 1;
+      let forUIresults = {"Action":"input.SalesCategory_Year","Parameters":{"Year":iYear,"SalesCategory":parameters['SalesCategory']}};
       //조건에 해당하는 값을 읽어오기
       switch (parameters['SalesCategory']) {
         case 'Country':
@@ -80,7 +81,7 @@ app.post('/dashboard',function(request,response){
           break;
         default:
       }
-      responseJson.forUIresults = JSON.stringify(aResult);
+      responseJson.forUIresults = JSON.stringify(forUIresults);
       responseJson.forUIRequest = requestOriginal;
 
       if (requestSource === googleAssistantRequest) {
