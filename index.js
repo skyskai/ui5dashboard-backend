@@ -63,6 +63,19 @@ app.post('/dashboard',function(request,response){
         sendResponse('Heroku webhook action \'byYear\' '); // Send simple response to user
       }
     },
+    //Category의 특정 Category의 사진을 Picutre에서 보여주도록 함
+    'input.DetailCategory':() =>{
+      let forUIresults = {"Action":"input.DetailCategory","Parameters":{"CategoryName":parameters['CategoryName']}};
+      responseJson.forUIresults = JSON.stringify(forUIresults);
+      responseJson.forUIRequest = requestOriginal;
+      responseJson.speech = "Ok, I sent a picture of " + parameters['CategoryName'] + ' to your screen';
+      responseJson.displayText = "Ok, I sent a picture of " + parameters['CategoryName'] + ' to your screen';
+      if (requestSource === googleAssistantRequest) {
+        sendGoogleResponse(responseJson);
+      } else {
+        sendResponse(responseJson);
+      }
+    },
     //SalesCategory(Country, Category, Product)와 년도 기준 Sales
     'input.SalesCategory_Year':() =>{
       let aResult;
