@@ -321,7 +321,7 @@ app.post('/dashboard',function(request,response){
           }
 
 
-					var sBody = json2html.transform(oResponse,sBodyTemplate);
+					var sBody = json2html.transform(aList,sBodyTemplate);
 
           var mailOptions = {
       					  from: 'skyskai@gmail.com',
