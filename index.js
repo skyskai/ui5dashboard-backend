@@ -150,7 +150,7 @@ app.post('/dashboard',function(request,response){
    'input.sendMailToManager':() => {
      let aResult;
      let iYear = parameters['Year'].substring(0,4) * 1;
-     let forUIresults = {"Action":"input.SalesCategory_Year","Parameters":{"Year":iYear,"SalesCategory":parameters['SalesCategory']}};
+     let forUIresults = {"Action":"input.sendMailToManager","Parameters":{"Year":iYear,"SalesCategory":parameters['SalesCategory']}};
      //조건에 해당하는 값을 읽어오기
      switch (parameters['SalesCategory']) {
        case 'Country':
@@ -177,6 +177,39 @@ app.post('/dashboard',function(request,response){
        sendListToManger(aResult,['skyskai@naver.com','s.chul.yang@samsung.com'],parameters['SalesCategory']);
        sendResponse(responseJson);
      }
+   },
+   //두개 년도를 비교
+   'input.CountryCompare':() =>{
+     let aResult;
+     let aYearBetween = parameters['Year_Between'].split('-');
+
+     let iYearFrom = aYearBetween[0] * 1;
+     let iYearTo = aYearBetween[2].split('/')[1] * 1;
+     let sCountryName = parameters['CountryName'];
+     let forUIresults = {"Action":"input.CountryCompare","Parameters":{"YearFrom":iYearFrom,"YearTo":iYearTo,"CountryName":sCountryName}};
+
+     //비교할 값을 읽어서 각각 oResultFrom, oResultTo에 넣음.
+     const fnFilterCountry = function(aList,sCountryName){
+                        let oFound = aList.filter(function(obj){
+                	      if(obj.Country === sCountryName){
+                		      return obj;	}})
+                       return oFound;
+                     };
+    let oResultFrom = fnFilterCountry(getDataByYear(aSales.SalesByCountry,iYearFrom),sCountryName)[0];
+    let oResultTo = fnFilterCountry(getDataByYear(aSales.SalesByCountry,iYearTo),sCountryName)[0];
+    //Amount를 비교해서 결과를 리턴함
+    let iGapTo_From = ( oResultTo.Amount - oResultFrom.Amount ).toFixed(2);
+    const sResultPre = 'In ' + oResultTo.Year + ' the sales of ' + oResultTo.Country + ' has been ';
+    responseJson.forUIresults = JSON.stringify(forUIresults);
+    responseJson.forUIRequest = requestOriginal;
+    if(iGapTo_From < 0){//감소
+      responseJson.speech = sResultPre + ' decreased about $'+ iGapTo_From * -1 + ' compared in '+oResultFrom.Year;
+    } else  {
+      responseJson.speech = sResultPre + ' increased about $'+ iGapTo_From + ' compared in '+oResultFrom.Year;
+    }
+     responseJson.displayText = responseJson.speech;
+     sendResponse(responseJson);
+
    },
     // The default welcome intent has been matched, welcome the user (https://dialogflow.com/docs/events#default_welcome_intent)
     'input.welcome': () => {
@@ -326,7 +359,7 @@ app.post('/dashboard',function(request,response){
           var mailOptions = {
       					  from: 'skyskai@gmail.com',
       					  to:  aRecipient.toString(), //'skyskai@naver.com,s.chul.yang@samsung.com',
-                  subject : '제목',
+                  subject : '[AIDeviceTest] 매출 현황 확인 바랍니다',
                   html: sHeader+sBody+'<tbody></tbody>        </table></div>'
 					};
           transporter.sendMail(mailOptions, function(error, info){
