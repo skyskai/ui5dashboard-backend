@@ -336,7 +336,7 @@ app.post('/dashboard',function(request,response){
   						console.log('Email sent: ' + info.response);
   					  }
   					});
- },
+ }
  //금액 기준 역순 소팅
  function customSort(a, b) {
      if(a.Amount == b.Amount){ return 0} return  a.Amount < b.Amount ? 1 : -1;
