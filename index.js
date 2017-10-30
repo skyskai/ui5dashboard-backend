@@ -98,22 +98,20 @@ app.post('/dashboard',function(request,response){
       responseJson.forUIRequest = requestOriginal;
 
       if (requestSource === googleAssistantRequest) {
+        aResult.sort(customSort);
         switch (parameters['SalesCategory']) {
           case 'Country':
-            aResult.sort(custonSort);
             responseJson.speech = 'In ' + iYear + ', sales of 3 countries,' + aResult[0].Country + ',' + aResult[1].Country + ' and ' + aResult[2].Country +
                                   ' is bigger than others';
             responseJson.displayText = responseJson.speech; // displayed response
 
             break;
           case 'Category':
-            aResult.sort(custonSort);
             responseJson.speech = 'In ' + iYear + ', sales of 3 categories,' + aResult[0].Category + ',' + aResult[1].Category + ' and ' + aResult[2].Category +
                                ' is bigger than others';
              responseJson.displayText = responseJson.speech; // displayed response
             break;
           case 'Product':
-            aResult.sort(custonSort);
              responseJson.speech = 'In ' + iYear + ', sales of 3 products,' + aResult[0].Product + ',' + aResult[1].Product + ' and ' + aResult[2].Product +
                                ' is bigger than others';
              responseJson.displayText = responseJson.speech; // displayed response
@@ -130,7 +128,56 @@ app.post('/dashboard',function(request,response){
       }
 
     },
+    //Country, Category, Product의 담당자 정보
+    'input.Manager':() => {
+      let aResult;
+      let sCountryName = parameters['CountryName'];
+      let sCategoryName = parameters['CategoryName'];
+      let sProductName = parameters['ProductName'];
+      let forUIresults = {"Action":"input.Manager","Parameters":{"CountryName":sCountryName,"CategoryName":sCategoryName,"ProductName":sProductName}};
+      responseJson.forUIresults = JSON.stringify(forUIresults);
+      responseJson.forUIRequest = requestOriginal;
+      responseJson.speech = 'The manager is ' + 'Charles a senior consultant of SAMSUNG SDS.';
+      responseJson.displayText = responseJson.speech;
+        if (requestSource === googleAssistantRequest) {
+          sendGoogleResponse(responseJson); // Send simple response to user
+        } else {
+          sendResponse(responseJson);
+        }
 
+   },
+   //담당 메니져에게 메일 보냄
+   'input.sendMailToManager':() => {
+     let aResult;
+     let iYear = parameters['Year'].substring(0,4) * 1;
+     let forUIresults = {"Action":"input.SalesCategory_Year","Parameters":{"Year":iYear,"SalesCategory":parameters['SalesCategory']}};
+     //조건에 해당하는 값을 읽어오기
+     switch (parameters['SalesCategory']) {
+       case 'Country':
+         aResult = getDataByYear(aSales.SalesByCountry,iYear)
+         break;
+       case 'Category':
+         aResult = getDataByYear(aSales.SalesByCategory,iYear)
+         break;
+       case 'Product':
+         aResult = getDataByYear(aSales.SalesByProduct,iYear)
+         break;
+       default:
+     }
+     responseJson.forUIresults = JSON.stringify(forUIresults);
+     responseJson.forUIRequest = requestOriginal;
+     responseJson.speech = 'List was sent via e-mail to managers';
+     responseJson.displayText = responseJson.speech;
+     if (requestSource === googleAssistantRequest) {
+       aResult.sort(customSort);
+       sendListToManger(aResult,['skyskai@naver.com','s.chul.yang@samsung.com'],parameters['SalesCategory']);
+       sendGoogleResponse(responseJson); // Sen
+     } else {
+       aResult.sort(customSort);
+       sendListToManger(aResult,['skyskai@naver.com','s.chul.yang@samsung.com'],parameters['SalesCategory']);
+       sendResponse(responseJson);
+     }
+   },
     // The default welcome intent has been matched, welcome the user (https://dialogflow.com/docs/events#default_welcome_intent)
     'input.welcome': () => {
       // Use the Actions on Google lib to respond to Google requests; for other requests use JSON
@@ -179,8 +226,119 @@ app.post('/dashboard',function(request,response){
  actionHandlers[action]();
  //Websocket 서버에 전달
  sendResponseToWebsocket(responseJson);
+
+ //리스트를 담당자에게 email보냄
+ function sendListToManger(aList,aRecipient,sSalesCategory){
+   var sHeader = "";
+   var sBodyTemplate="";
+   var transporter = nodemailer.createTransport({
+					  service: 'gmail',
+					  auth: {
+						type: 'OAuth2',
+						user: 'skyskai@gmail.com',
+						clientId: '697108665452-vm4pivn0s76ftdliiiohjihap1ppk0l3.apps.googleusercontent.com',
+						clientSecret: 'm_6wflsOFLHz_bzXDc_bbpWK',
+						refreshToken: '1/s5UePzl9fvAU7sJra8rP-9Wb0v2DuXt5fe--4emt8kU',
+						accessToken: 'ya29.GlvhBDi1s75uvVJRvNGE26GDh6_C9DOm3dasQxLgYtPObTXW4hGT_H7oJLnITNIWW7ImuOHceXWzjQDF0fVxeQNs2GrQV0aSknjUelFxavrcIohJMgl_anHBeSqs',
+						expires: 3600
+					  }
+					});
+
+          //json to html
+          switch (sSalesCategory) {
+            case 'Country':
+            sHeader = '<div class="container"><p><table cellspacing="2" cellpadding="0" border="0" align="center" bgcolor="#999999"><thead><tr>' +
+                         '<th>Year</th>'+'<th>Country</th>'+'<th>Amount</th>'+'<th>Currency</th>'+'</tr></thead>'; //
+            sBodyTemplate = {
+               															tag: 'tr',
+               															bgcolor :"#ffffff",
+               															children: [{
+               																  "tag": "td",
+               																  "html": "${Year}"
+               																},
+               																{
+               																  "tag": "td",
+               																  "html": "${Country}"
+               																},
+               																{
+               																  "tag": "td",
+               																  "html": "${Amount}"
+               																},
+               																{
+               																  "tag": "td",
+               																  "html": "${Currency}"
+               																}]};
+              break;
+              case 'Category':
+               sHeader = '<div class="container"><p><table cellspacing="2" cellpadding="0" border="0" align="center" bgcolor="#999999"><thead><tr>' +
+                          '<th>Year</th>'+'<th>Category</th>'+'<th>Amount</th>'+'<th>Currency</th>'+'</tr></thead>'; //
+              sBodyTemplate = {
+                             															tag: 'tr',
+                             															bgcolor :"#ffffff",
+                             															children: [{
+                             																  "tag": "td",
+                             																  "html": "${Year}"
+                             																},
+                             																{
+                             																  "tag": "td",
+                             																  "html": "${Category}"
+                             																},
+                             																{
+                             																  "tag": "td",
+                             																  "html": "${Amount}"
+                             																},
+                             																{
+                             																  "tag": "td",
+                             																  "html": "${Currency}"
+                             																}]};
+
+                break;
+                case 'Product':
+                 sHeader = '<div class="container"><p><table cellspacing="2" cellpadding="0" border="0" align="center" bgcolor="#999999"><thead><tr>' +
+                            '<th>Year</th>'+'<th>Product</th>'+'<th>Amount</th>'+'<th>Currency</th>'+'</tr></thead>'; //
+                 sBodyTemplate = {
+                                                            tag: 'tr',
+                                                            bgcolor :"#ffffff",
+                                                            children: [{
+                                                                "tag": "td",
+                                                                "html": "${Year}"
+                                                              },
+                                                              {
+                                                                "tag": "td",
+                                                                "html": "${Product}"
+                                                              },
+                                                              {
+                                                                "tag": "td",
+                                                                "html": "${Amount}"
+                                                              },
+                                                              {
+                                                                "tag": "td",
+                                                                "html": "${Currency}"
+                                                              }]};
+                  break;
+            default:
+
+          }
+
+
+					var sBody = json2html.transform(oResponse,sBodyTemplate);
+
+          var mailOptions = {
+      					  from: 'skyskai@gmail.com',
+      					  to:  aRecipient.toString(), //'skyskai@naver.com,s.chul.yang@samsung.com',
+                  subject : '제목',
+                  html: sHeader+sBody+'<tbody></tbody>        </table></div>'
+					};
+          transporter.sendMail(mailOptions, function(error, info){
+  					  if (error) {
+  						console.log(error);
+  					  } else {
+  						console.log('Email sent: ' + info.response);
+  					  }
+  					});
+ },
  //금액 기준 역순 소팅
- function custonSort(a, b) {
+ function customSort(a, b) {
      if(a.Amount == b.Amount){ return 0} return  a.Amount < b.Amount ? 1 : -1;
    }
  //Websocket 서버에 전달
