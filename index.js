@@ -13,6 +13,8 @@ const AUTH_TOKEN = 'ysc-token';
 //00. Raw 데이터 읽어
 const sJSONFile = fs.readFileSync("./data/salesNorthwind.json");
 const aSales = JSON.parse(sJSONFile);
+const sManager = fs.readFileSync("./data/managers.json");
+const aManagers = JSON.parse(sManager);
 
 //10. Settings
 app.use(bodyParser.json())
@@ -135,9 +137,17 @@ app.post('/dashboard',function(request,response){
       let sCategoryName = parameters['CategoryName'];
       let sProductName = parameters['ProductName'];
       let forUIresults = {"Action":"input.Manager","Parameters":{"CountryName":sCountryName,"CategoryName":sCategoryName,"ProductName":sProductName}};
+      let sManager = "";
+      //나라만 담당자를 db(파일)에서 찾아서 리턴, 그외에는 그냥 Charles를 리턴
+      if(sCountryName){
+        let oManager = aManagers.find(o => o.Country === sCountryName);
+        sManager = oManager.Name;
+      } else {
+        sManager = 'Charles'
+      }
       responseJson.forUIresults = JSON.stringify(forUIresults);
       responseJson.forUIRequest = requestOriginal;
-      responseJson.speech = 'The manager is ' + 'Charles a senior consultant of SAMSUNG SDS.';
+      responseJson.speech = 'The manager is ' + sManager + ' an employee of SAMSUNG SDS.';
       responseJson.displayText = responseJson.speech;
         if (requestSource === googleAssistantRequest) {
           sendGoogleResponse(responseJson); // Send simple response to user
@@ -150,31 +160,44 @@ app.post('/dashboard',function(request,response){
    'input.sendMailToManager':() => {
      let aResult;
      let iYear = parameters['Year'].substring(0,4) * 1;
-     let forUIresults = {"Action":"input.sendMailToManager","Parameters":{"Year":iYear,"SalesCategory":parameters['SalesCategory']}};
+     let sCountryName = parameters['CountryName'];
+     let sCategoryName = parameters['CategoryName'];
+     let sProductName = parameters['ProductName'];
+     let forUIresults = {"Action":"input.sendMailToManager","Parameters":{"Year":iYear,"SalesCategory":parameters['SalesCategory'],"CountryName":sCountryName,"CategoryName":sCategoryName,"ProductName":sProductName}};
+     let aRecipient = [];
      //조건에 해당하는 값을 읽어오기
      switch (parameters['SalesCategory']) {
        case 'Country':
-         aResult = getDataByYear(aSales.SalesByCountry,iYear)
+         aResult = getDataByYear(aSales.SalesByCountry,iYear);
+             let oManager = aManagers.find(o => o.Country === sCountryName);
+             aRecipient.push(oManager.Email);
+             aRecipient.push('skyskai@naver.com');
          break;
        case 'Category':
          aResult = getDataByYear(aSales.SalesByCategory,iYear)
+         aRecipient.push('skyskai@naver.com');
          break;
        case 'Product':
          aResult = getDataByYear(aSales.SalesByProduct,iYear)
+         aRecipient.push('skyskai@naver.com');
          break;
        default:
      }
      responseJson.forUIresults = JSON.stringify(forUIresults);
      responseJson.forUIRequest = requestOriginal;
-     responseJson.speech = 'Email sent to the manager';
+     responseJson.speech = 'Email sent to the manager' + oManager.Name;
      responseJson.displayText = responseJson.speech;
+
+
      if (requestSource === googleAssistantRequest) {
        aResult.sort(customSort);
-       sendListToManger(aResult,['skyskai@naver.com','s.chul.yang@samsung.com'],parameters['SalesCategory']);
+       //담당자별 EMAIL주소
+
+       sendListToManger(aResult,aRecipient,parameters['SalesCategory']);
        sendGoogleResponse(responseJson); // Sen
      } else {
        aResult.sort(customSort);
-       sendListToManger(aResult,['skyskai@naver.com','s.chul.yang@samsung.com'],parameters['SalesCategory']);
+       sendListToManger(aResult,aRecipient,parameters['SalesCategory']);
        sendResponse(responseJson);
      }
    },
