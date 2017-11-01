@@ -165,11 +165,13 @@ app.post('/dashboard',function(request,response){
      let sProductName = parameters['ProductName'];
      let forUIresults = {"Action":"input.sendMailToManager","Parameters":{"Year":iYear,"SalesCategory":parameters['SalesCategory'],"CountryName":sCountryName,"CategoryName":sCategoryName,"ProductName":sProductName}};
      let aRecipient = [];
+     let oManager = "";
      //조건에 해당하는 값을 읽어오기
      switch (parameters['SalesCategory']) {
        case 'Country':
          aResult = getDataByYear(aSales.SalesByCountry,iYear);
-             let oManager = aManagers.find(o => o.Country === sCountryName);
+         //나라별 담당자 읽어
+             oManager = aManagers.find(o => o.Country === sCountryName);
              aRecipient.push(oManager.Email);
              aRecipient.push('skyskai@naver.com');
          break;
