@@ -246,6 +246,22 @@ app.post('/dashboard',function(request,response){
      sendResponse(responseJson);
 
    },
+   //Page 이동
+   'input.moveBack':() => {
+     let aResult;
+     let sMoveTarget = parameters['MoveTarget'];
+     let forUIresults = {"Action":"input.moveBack","Parameters":{"MoveTarget":sMoveTarget}};
+
+     responseJson.forUIresults = JSON.stringify(forUIresults);
+     responseJson.forUIRequest = requestOriginal;
+     responseJson.speech = 'Move to ' + sMoveTarget;
+     responseJson.displayText = responseJson.speech;
+       if (requestSource === googleAssistantRequest) {
+         sendGoogleResponse(responseJson); // Send simple response to user
+       } else {
+         sendResponse(responseJson);
+       }
+   },
     // The default welcome intent has been matched, welcome the user (https://dialogflow.com/docs/events#default_welcome_intent)
     'input.welcome': () => {
       // Use the Actions on Google lib to respond to Google requests; for other requests use JSON
