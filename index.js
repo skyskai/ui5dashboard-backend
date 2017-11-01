@@ -68,8 +68,8 @@ app.post('/dashboard',function(request,response){
       let forUIresults = {"Action":"input.DetailCategory","Parameters":{"CategoryName":parameters['CategoryName']}};
       responseJson.forUIresults = JSON.stringify(forUIresults);
       responseJson.forUIRequest = requestOriginal;
-      responseJson.speech = "Ok, I sent a picture of " + parameters['CategoryName'] + ' to your screen';
-      responseJson.displayText = "Ok, I sent a picture of " + parameters['CategoryName'] + ' to your screen';
+      responseJson.speech = "Ok, I sent the picture of " + parameters['CategoryName'] + ' to your screen';
+      responseJson.displayText = responseJson.speech;
       if (requestSource === googleAssistantRequest) {
         sendGoogleResponse(responseJson);
       } else {
