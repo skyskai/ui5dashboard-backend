@@ -187,7 +187,7 @@ app.post('/dashboard',function(request,response){
      }
      responseJson.forUIresults = JSON.stringify(forUIresults);
      responseJson.forUIRequest = requestOriginal;
-     responseJson.speech = 'Email sent to the manager' + oManager.Name;
+     responseJson.speech = 'Email sent to the manager ' + oManager.Name;
      responseJson.displayText = responseJson.speech;
 
 
