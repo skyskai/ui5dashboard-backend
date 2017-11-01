@@ -68,7 +68,7 @@ app.post('/dashboard',function(request,response){
       let forUIresults = {"Action":"input.DetailCategory","Parameters":{"CategoryName":parameters['CategoryName']}};
       responseJson.forUIresults = JSON.stringify(forUIresults);
       responseJson.forUIRequest = requestOriginal;
-      responseJson.speech = "Ok, I sent the picture of " + parameters['CategoryName'] + ' to your screen';
+      responseJson.speech = "Ok, I have sent the picture of " + parameters['CategoryName'] + ' to your screen';
       responseJson.displayText = responseJson.speech;
       if (requestSource === googleAssistantRequest) {
         sendGoogleResponse(responseJson);
@@ -101,19 +101,19 @@ app.post('/dashboard',function(request,response){
         aResult.sort(customSort);
         switch (parameters['SalesCategory']) {
           case 'Country':
-            responseJson.speech = 'In ' + iYear + ', sales of 3 countries,' + aResult[0].Country + ',' + aResult[1].Country + ' and ' + aResult[2].Country +
-                                  ' is bigger than others';
+            responseJson.speech = 'In ' + iYear + ',' + aResult[0].Country + ',' + aResult[1].Country + ', and ' + aResult[2].Country +
+                                  ' are the top three countries in sales';
             responseJson.displayText = responseJson.speech; // displayed response
 
             break;
           case 'Category':
-            responseJson.speech = 'In ' + iYear + ', sales of 3 categories,' + aResult[0].Category + ',' + aResult[1].Category + ' and ' + aResult[2].Category +
-                               ' is bigger than others';
+            responseJson.speech = 'In ' + iYear + ',' + aResult[0].Category + ',' + aResult[1].Category + ' and ' + aResult[2].Category +
+                                  ' are the top three categories in sales';
              responseJson.displayText = responseJson.speech; // displayed response
             break;
           case 'Product':
-             responseJson.speech = 'In ' + iYear + ', sales of 3 products,' + aResult[0].Product + ',' + aResult[1].Product + ' and ' + aResult[2].Product +
-                               ' is bigger than others';
+             responseJson.speech = 'In ' + iYear + ',' + aResult[0].Product + ',' + aResult[1].Product + ' and ' + aResult[2].Product +
+                                   ' are the top three products in sales';
              responseJson.displayText = responseJson.speech; // displayed response
             break;
           default:
@@ -166,7 +166,7 @@ app.post('/dashboard',function(request,response){
      }
      responseJson.forUIresults = JSON.stringify(forUIresults);
      responseJson.forUIRequest = requestOriginal;
-     responseJson.speech = 'List was sent via e-mail to managers';
+     responseJson.speech = 'Email sent to the manager';
      responseJson.displayText = responseJson.speech;
      if (requestSource === googleAssistantRequest) {
        aResult.sort(customSort);
@@ -191,23 +191,33 @@ app.post('/dashboard',function(request,response){
      //비교할 값을 읽어서 각각 oResultFrom, oResultTo에 넣음.
      const fnFilterCountry = function(aList,sCountryName){
                         let oFound = aList.filter(function(obj){
-                	      if(obj.Country === sCountryName){
-                		      return obj;	}})
+                        if(obj.Country === sCountryName){
+                  		      return obj;	}})
+
                        return oFound;
                      };
-    let oResultFrom = fnFilterCountry(getDataByYear(aSales.SalesByCountry,iYearFrom),sCountryName)[0];
-    let oResultTo = fnFilterCountry(getDataByYear(aSales.SalesByCountry,iYearTo),sCountryName)[0];
+
     //Amount를 비교해서 결과를 리턴함
-    let iGapTo_From = ( oResultTo.Amount - oResultFrom.Amount ).toFixed(2);
-    const sResultPre = 'In ' + oResultTo.Year + ' the sales of ' + oResultTo.Country + ' has been ';
     responseJson.forUIresults = JSON.stringify(forUIresults);
     responseJson.forUIRequest = requestOriginal;
-    if(iGapTo_From < 0){//감소
-      responseJson.speech = sResultPre + ' decreased about $'+ iGapTo_From * -1 + ' compared in '+oResultFrom.Year;
-    } else  {
-      responseJson.speech = sResultPre + ' increased about $'+ iGapTo_From + ' compared in '+oResultFrom.Year;
-    }
+    //전체 국가를 선택할 경우
+    if(sCountryName==='ALL'){
+      // let oResultFrom = getDataByYear(aSales.SalesByCountry,iYearFrom);
+      // let oResultTo = getDataByYear(aSales.SalesByCountry,iYearTo);
+      responseJson.speech = 'Here are the sales for all the countries between '+ iYearFrom + ' and ' + iYearTo;
      responseJson.displayText = responseJson.speech;
+    } else {
+      let oResultFrom = fnFilterCountry(getDataByYear(aSales.SalesByCountry,iYearFrom),sCountryName)[0];
+      let oResultTo = fnFilterCountry(getDataByYear(aSales.SalesByCountry,iYearTo),sCountryName)[0];
+      let iGapTo_From = ( oResultTo.Amount - oResultFrom.Amount ).toFixed(2);
+      const sResultPre = 'In ' + oResultTo.Year + ' the sales of ' + oResultTo.Country + ' has ';
+      if(iGapTo_From < 0){//감소
+        responseJson.speech = sResultPre + ' decreased about $'+ iGapTo_From * -1 + ' compared to in '+oResultFrom.Year;
+      } else  {
+        responseJson.speech = sResultPre + ' increased about $'+ iGapTo_From + ' compared to in '+oResultFrom.Year;
+      }
+       responseJson.displayText = responseJson.speech;
+    }
      sendResponse(responseJson);
 
    },
