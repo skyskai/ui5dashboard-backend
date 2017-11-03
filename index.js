@@ -266,7 +266,10 @@ app.post('/dashboard',function(request,response){
     'input.welcome': () => {
       // Use the Actions on Google lib to respond to Google requests; for other requests use JSON
       if (requestSource === googleAssistantRequest) {
-        sendGoogleResponse('Hello, Welcome to my Dialogflow agent! [Google]'); // Send simple response to user
+        // sendGoogleResponse('Hello, Welcome to my Dialogflow agent! [Google]'); // Send simple response to user
+        //sendGoogleResponse('Hello, Welcome to my Dialogflow agent! [Google]'); // Send simple response to user
+        responseToUser.googleRichResponse = googleRichResponse;
+        sendGoogleResponse(responseToUser);
       } else {
         sendResponse('Hello, Welcome to my Dialogflow agent!'); // Send simple response to user
       }
