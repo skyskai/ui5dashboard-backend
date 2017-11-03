@@ -268,8 +268,8 @@ app.post('/dashboard',function(request,response){
       if (requestSource === googleAssistantRequest) {
         // sendGoogleResponse('Hello, Welcome to my Dialogflow agent! [Google]'); // Send simple response to user
         //sendGoogleResponse('Hello, Welcome to my Dialogflow agent! [Google]'); // Send simple response to user
-        responseToUser.googleRichResponse = googleRichResponse;
-        sendGoogleResponse(responseToUser);
+        responseJson.googleRichResponse = googleRichResponse;
+        sendGoogleResponse(responseJson);
       } else {
         sendResponse('Hello, Welcome to my Dialogflow agent!'); // Send simple response to user
       }
