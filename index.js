@@ -567,7 +567,7 @@ like line  \nbreaks`) // Note the two spaces before '\n' required for a
    .addButton('This is a button', 'https://assistant.google.com/')
   //  .setImage('https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png',
   .setImage(imageUrl,
-     'Image alternate text','100%'))
+     'Image alternate text','200px'))
  .addSimpleResponse({ speech: 'This is another simple response',
    displayText: 'This is the another simple response 💁' });
 
