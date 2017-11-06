@@ -526,6 +526,30 @@ app.post('/dashboard',function(request,response){
 
 // Construct rich response for Google Assistant
 const apiaiApp = new DialogflowApp();
+//chart test
+var Quiche = require('quiche');
+
+ var bar = new Quiche('bar');
+ bar.setWidth(400);
+ bar.setHeight(265);
+ bar.setTitle('Some title or something');
+ bar.setBarStacked(); // Stacked chart
+ bar.setBarWidth(0);
+ bar.setBarSpacing(6); // 6 pixles between bars/groups
+ bar.setLegendBottom(); // Put legend at bottom
+ bar.setTransparentBackground(); // Make background transparent
+
+ bar.addData([19, 19, 21, 14, 19, 11, 10, 18, 19, 30], 'Foo', 'FF0000');
+ bar.addData([4, 3, 2, 3, 0, 0, 3, 4, 2, 2], 'bar', '0000FF');
+ bar.addData([10, 8, 2, 1, 18, 9, 20, 21, 19, 11], 'bin', '008000');
+ bar.addData([2, 1, 1, 1, 1, 7, 3, 6, 2, 7], 'bash', '00FF00');
+ bar.addData([1, 0, 0, 1, 2, 1, 0, 0, 0, 0], 'blah', '307000');
+
+ bar.setAutoScaling(); // Auto scale y axis
+ bar.addAxisLabels('x', ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']);
+
+ var imageUrl = bar.getUrl(true); // First param controls http vs. https
+ ////chart test
 const googleRichResponse = apiaiApp.buildRichResponse()
  .addSimpleResponse('This is the first simple response for Google Assistant')
  .addSuggestions(
@@ -541,7 +565,8 @@ like line  \nbreaks`) // Note the two spaces before '\n' required for a
    .setSubtitle('This is a subtitle')
    .setTitle('Title: this is a title')
    .addButton('This is a button', 'https://assistant.google.com/')
-   .setImage('https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png',
+  //  .setImage('https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png',
+  .setImage(imageUrl,
      'Image alternate text'))
  .addSimpleResponse({ speech: 'This is another simple response',
    displayText: 'This is the another simple response 💁' });
