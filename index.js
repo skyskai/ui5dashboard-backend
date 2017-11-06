@@ -461,17 +461,25 @@ app.post('/dashboard',function(request,response){
  }
  //input.welcome
  function welcomeIntent (app) {
-   app.askWithCarousel('Which of these looks good?',
-     app.buildCarousel()
-      .addItems([
-        app.buildOptionItem('input.SalesCategory_Year',
-          ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
-          .setTitle('매출 조회'),
-        app.buildOptionItem(SELECTION_KEY_TWO,
-          ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
-          .setTitle('매출 비교'),
-      ]));
- }
+  app.askWithCarousel('Which of these looks good?',
+    app.buildCarousel()
+     .addItems([
+       app.buildOptionItem(SELECTION_KEY_ONE,
+         ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
+         .setTitle('Number one'),
+       app.buildOptionItem(SELECTION_KEY_TWO,
+         ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
+         .setTitle('Number two'),
+     ]));
+}
+
+function optionIntent (app) {
+  if (app.getSelectedOption() === SELECTION_KEY_ONE) {
+    app.tell('Number one is a great choice!');
+  } else {
+    app.tell('Number two is a great choice!');
+  }
+}
 
 // Function to send correctly formatted Google Assistant responses to Dialogflow which are then sent to the user
  function sendGoogleResponse (responseToUser) {
