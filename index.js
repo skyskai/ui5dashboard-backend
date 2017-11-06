@@ -193,7 +193,7 @@ app.post('/dashboard',function(request,response){
      let aYearBetween_ko = parameters['Year_Between_ko'];//["1996년","1998년"];
      let iYearFrom = 0;
      let iYearTo = 0;
-     if(aYearBetween_ko){
+     if(aYearBetween_ko.length>0){
         iYearFrom = aYearBetween_ko[0].substring(0,4) * 1;
         iYearTo = aYearBetween[1].substring(0,4) * 1
      } else {
