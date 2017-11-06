@@ -48,23 +48,6 @@ app.post('/dashboard',function(request,response){
    let responseJson = {};
    // Create handlers for Dialogflow actions as well as a 'default' handler
   const actionHandlers = {
-    //국가별
-    'input.byCountry':() =>{
-      if (requestSource === googleAssistantRequest) {
-        sendGoogleResponse('Heroku webhook action \'byCountry\' [Google]'); // Send simple response to user
-      } else {
-        sendResponse('Heroku webhook action \'byCountry\' '); // Send simple response to user
-      }
-
-    },
-    //년도별
-    'input.byYear':() =>{
-      if (requestSource === googleAssistantRequest) {
-        sendGoogleResponse('Heroku webhook action \'byYear\' [Google]'); // Send simple response to user
-      } else {
-        sendResponse('Heroku webhook action \'byYear\' '); // Send simple response to user
-      }
-    },
     //Category의 특정 Category의 사진을 Picutre에서 보여주도록 함
     'input.DetailCategory':() =>{
       let forUIresults = {"Action":"input.DetailCategory","Parameters":{"CategoryName":parameters['CategoryName']}};
@@ -206,10 +189,18 @@ app.post('/dashboard',function(request,response){
    //두개 년도를 비교
    'input.CountryCompare':() =>{
      let aResult;
-     let aYearBetween = parameters['Year_Between'].split('-');
+     let aYearBetween = parameters['Year_Between'].split('-');//영어일 경우 여기에 한국어일 경우 aYearBetween_ko에
+     let aYearBetween_ko = parameters['Year_Between_ko'];//["1996년","1998년"];
+     let iYearFrom = 0;
+     let iYearTo = 0;
+     if(aYearBetween_ko){
+        iYearFrom = aYearBetween_ko[0].substring(0,4) * 1;
+        iYearTo = aYearBetween[1].substring(0,4) * 1
+     } else {
+       iYearFrom = aYearBetween[0] * 1;
+       iYearTo = aYearBetween[2].split('/')[1] * 1;
+     }
 
-     let iYearFrom = aYearBetween[0] * 1;
-     let iYearTo = aYearBetween[2].split('/')[1] * 1;
      let sCountryName = parameters['CountryName'];
      let forUIresults = {"Action":"input.CountryCompare","Parameters":{"YearFrom":iYearFrom,"YearTo":iYearTo,"CountryName":sCountryName}};
 
@@ -268,9 +259,9 @@ app.post('/dashboard',function(request,response){
       if (requestSource === googleAssistantRequest) {
         // sendGoogleResponse('Hello, Welcome to my Dialogflow agent! [Google]'); // Send simple response to user
         //sendGoogleResponse('Hello, Welcome to my Dialogflow agent! [Google]'); // Send simple response to user
-        // responseJson.googleRichResponse = googleRichResponse;
-        // sendGoogleResponse(responseJson);
-        welcomeIntent(apiaiApp);
+        responseJson.googleRichResponse = googleRichResponse;
+        sendGoogleResponse(responseJson);
+        // welcomeIntent(apiaiApp);
       } else {
         sendResponse('Hello, Welcome to my Dialogflow agent!'); // Send simple response to user
       }
@@ -459,28 +450,6 @@ app.post('/dashboard',function(request,response){
              		return obj;	}})
    return oFound;
  }
- //input.welcome
- function welcomeIntent (app) {
-   const apiaiApp2 = new DialogflowApp();
-  apiaiApp2.askWithCarousel('Which of these looks good?',
-    apiaiApp2.buildCarousel()
-     .addItems([
-       apiaiApp2.buildOptionItem('SELECTION_KEY_ONE',
-         ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
-         .setTitle('Number one'),
-       apiaiApp2.buildOptionItem('SELECTION_KEY_TWO',
-         ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
-         .setTitle('Number two'),
-     ]));
-}
-
-function optionIntent (app) {
-  if (app.getSelectedOption() === SELECTION_KEY_ONE) {
-    app.tell('Number one is a great choice!');
-  } else {
-    app.tell('Number two is a great choice!');
-  }
-}
 
 // Function to send correctly formatted Google Assistant responses to Dialogflow which are then sent to the user
  function sendGoogleResponse (responseToUser) {
