@@ -461,13 +461,14 @@ app.post('/dashboard',function(request,response){
  }
  //input.welcome
  function welcomeIntent (app) {
-  app.askWithCarousel('Which of these looks good?',
-    app.buildCarousel()
+   const apiaiApp2 = new DialogflowApp();
+  apiaiApp2.askWithCarousel('Which of these looks good?',
+    apiaiApp2.buildCarousel()
      .addItems([
-       app.buildOptionItem(SELECTION_KEY_ONE,
+       apiaiApp2.buildOptionItem('SELECTION_KEY_ONE',
          ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
          .setTitle('Number one'),
-       app.buildOptionItem(SELECTION_KEY_TWO,
+       apiaiApp2.buildOptionItem('SELECTION_KEY_TWO',
          ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
          .setTitle('Number two'),
      ]));
