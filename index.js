@@ -268,8 +268,9 @@ app.post('/dashboard',function(request,response){
       if (requestSource === googleAssistantRequest) {
         // sendGoogleResponse('Hello, Welcome to my Dialogflow agent! [Google]'); // Send simple response to user
         //sendGoogleResponse('Hello, Welcome to my Dialogflow agent! [Google]'); // Send simple response to user
-        responseJson.googleRichResponse = googleRichResponse;
-        sendGoogleResponse(responseJson);
+        // responseJson.googleRichResponse = googleRichResponse;
+        // sendGoogleResponse(responseJson);
+        welcomeIntent(apiaiApp);
       } else {
         sendResponse('Hello, Welcome to my Dialogflow agent!'); // Send simple response to user
       }
@@ -458,7 +459,19 @@ app.post('/dashboard',function(request,response){
              		return obj;	}})
    return oFound;
  }
-
+ //input.welcome
+ function welcomeIntent (app) {
+   app.askWithCarousel('Which of these looks good?',
+     app.buildCarousel()
+      .addItems([
+        app.buildOptionItem('input.SalesCategory_Year',
+          ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
+          .setTitle('매출 조회'),
+        app.buildOptionItem(SELECTION_KEY_TWO,
+          ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
+          .setTitle('매출 비교'),
+      ]));
+ }
 
 // Function to send correctly formatted Google Assistant responses to Dialogflow which are then sent to the user
  function sendGoogleResponse (responseToUser) {
