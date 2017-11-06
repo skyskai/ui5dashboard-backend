@@ -573,42 +573,76 @@ like line  \nbreaks`) // Note the two spaces before '\n' required for a
 
 // Rich responses for both Slack and Facebook
 const richResponses = {
- 'slack': {
-   'text': 'This is a text response for Slack.',
-   'attachments': [
-     {
-       'title': 'Title: this is a title',
-       'title_link': 'https://assistant.google.com/',
-       'text': 'This is an attachment.  Text in attachments can include \'quotes\' and most other unicode characters including emoji 📱.  Attachments also upport line\nbreaks.',
-       'image_url': 'https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png',
-       'fallback': 'This is a fallback.'
-     }
-   ]
- },
- 'facebook': {
-   'attachment': {
-     'type': 'template',
-     'payload': {
-       'template_type': 'generic',
-       'elements': [
-         {
-           'title': 'Title: this is a title',
-           'image_url': 'https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png',
-           'subtitle': 'This is a subtitle',
-           'default_action': {
-             'type': 'web_url',
-             'url': 'https://assistant.google.com/'
-           },
-           'buttons': [
-             {
-               'type': 'web_url',
-               'url': 'https://assistant.google.com/',
-               'title': 'This is a button'
-             }
-           ]
-         }
-       ]
-     }
-   }
- }
+  'google': {
+    'expectUserResponse': true,
+    'isSsml': false,
+    'noInputPrompts': [],
+    'richResponse': {
+      'items': [
+        {
+          'simpleResponse': {
+            'textToSpeech': 'This is a simple speech response for Actions on Google.',
+            'displayText': 'This is a simple display text response for Action on Google.'
+          }
+        },
+        {
+          'basicCard': {
+            'title': 'Title: this is a title',
+            'subtitle': 'This is a subtitle',
+            'formattedText': 'This is a basic card.  Text in a basic card can include \'quotes\' and most other unicode characters including emoji 📱.  Basi cards also support some markdown formatting like *emphasis* or _italics_, **strong** or __bold__, and ***bold itallic*** or ___strong emphasis___ as well as other things like line  \nbreaks',
+            'image': {
+              'url': 'https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png',
+              'accessibilityText': 'Image alternate text'
+            },
+            'buttons': [
+              {
+                'title': 'This is a button',
+                'openUrlAction': {
+                  'url': 'https://assistant.google.com/'
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  'slack': {
+    'text': 'This is a text response for Slack.',
+    'attachments': [
+      {
+        'title': 'Title: this is a title',
+        'title_link': 'https://assistant.google.com/',
+        'text': 'This is an attachment.  Text in attachments can include \'quotes\' and most other unicode characters including emoji 📱.  Attachments also upport line\nbreaks.',
+        'image_url': 'https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png',
+        'fallback': 'This is a fallback.'
+      }
+    ]
+  },
+  'facebook': {
+    'attachment': {
+      'type': 'template',
+      'payload': {
+        'template_type': 'generic',
+        'elements': [
+          {
+            'title': 'Title: this is a title',
+            'image_url': 'https://developers.google.com/actions/images/badges/XPM_BADGING_GoogleAssistant_VER.png',
+            'subtitle': 'This is a subtitle',
+            'default_action': {
+              'type': 'web_url',
+              'url': 'https://assistant.google.com/'
+            },
+            'buttons': [
+              {
+                'type': 'web_url',
+                'url': 'https://assistant.google.com/',
+                'title': 'This is a button'
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
 };
