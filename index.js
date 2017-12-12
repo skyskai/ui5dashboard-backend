@@ -20,7 +20,7 @@ const aManagers = JSON.parse(sManager);
 app.use(bodyParser.json())
 app.set('port', (process.env.PORT || 5000))
 //20. WebSocket
-var url = "wss://websocket3347.herokuapp.com";
+var url = "wss://ui5websocket.cfapps.eu10.hana.ondemand.com";
 var ws = new WebSocket(url);
 //30. 요청 처리
 app.post('/dashboard',function(request,response){
@@ -82,33 +82,33 @@ app.post('/dashboard',function(request,response){
       responseJson.forUIresults = JSON.stringify(forUIresults);
       responseJson.forUIRequest = requestOriginal;
 
-      if (requestSource === googleAssistantRequest) {
-        aResult.sort(customSort);
-        switch (parameters['SalesCategory']) {
-          case 'Country':
-            responseJson.speech = 'In ' + iYear + ',' + aResult[0].Country + ',' + aResult[1].Country + ', and ' + aResult[2].Country +
-                                  ' are the top three countries in sales';
-            responseJson.displayText = responseJson.speech; // displayed response
+      aResult.sort(customSort);
+      switch (parameters['SalesCategory']) {
+        case 'Country':
+          responseJson.speech = 'In ' + iYear + ',' + aResult[0].Country + ',' + aResult[1].Country + ', and ' + aResult[2].Country +
+                                ' are the top three countries in sales';
+          responseJson.displayText = responseJson.speech; // displayed response
 
-            break;
-          case 'Category':
-            responseJson.speech = 'In ' + iYear + ',' + aResult[0].Category + ',' + aResult[1].Category + ' and ' + aResult[2].Category +
-                                  ' are the top three categories in sales';
-             responseJson.displayText = responseJson.speech; // displayed response
-            break;
-          case 'Product':
-             responseJson.speech = 'In ' + iYear + ',' + aResult[0].Product + ',' + aResult[1].Product + ' and ' + aResult[2].Product +
-                                   ' are the top three products in sales';
-             responseJson.displayText = responseJson.speech; // displayed response
-            break;
-          default:
-        }
+          break;
+        case 'Category':
+          responseJson.speech = 'In ' + iYear + ',' + aResult[0].Category + ',' + aResult[1].Category + ' and ' + aResult[2].Category +
+                                ' are the top three categories in sales';
+           responseJson.displayText = responseJson.speech; // displayed response
+          break;
+        case 'Product':
+           responseJson.speech = 'In ' + iYear + ',' + aResult[0].Product + ',' + aResult[1].Product + ' and ' + aResult[2].Product +
+                                 ' are the top three products in sales';
+           responseJson.displayText = responseJson.speech; // displayed response
+          break;
+        default:
+      }
+      if (requestSource === googleAssistantRequest) {        
         sendGoogleResponse(responseJson); // Send simple response to user
       } else {
         // responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
         // responseJson.displayText = responseJson.speech; // displayed response
-        responseJson.speech = JSON.stringify(aResult);
-        responseJson.displayText = responseJson.speech;
+        // responseJson.speech = JSON.stringify(aResult);
+        // responseJson.displayText = responseJson.speech;
         sendResponse(responseJson);
       }
 
@@ -190,16 +190,16 @@ app.post('/dashboard',function(request,response){
    'input.CountryCompare':() =>{
      let aResult;
      let aYearBetween = parameters['Year_Between'].split('-');//영어일 경우 여기에 한국어일 경우 aYearBetween_ko에
-     let aYearBetween_ko = parameters['Year_Between_ko'];//["1996년","1998년"];
+     /* let aYearBetween_ko = parameters['Year_Between_ko'];//["1996년","1998년"]; */
      let iYearFrom = 0;
      let iYearTo = 0;
-     if(aYearBetween_ko.length>0){
+   /*   if(aYearBetween_ko.length>0){
         iYearFrom = aYearBetween_ko[0].substring(0,4) * 1;
         iYearTo = aYearBetween[1].substring(0,4) * 1
-     } else {
+     } else { */
        iYearFrom = aYearBetween[0] * 1;
        iYearTo = aYearBetween[2].split('/')[1] * 1;
-     }
+     /* } */
 
      let sCountryName = parameters['CountryName'];
      let forUIresults = {"Action":"input.CountryCompare","Parameters":{"YearFrom":iYearFrom,"YearTo":iYearTo,"CountryName":sCountryName}};

@@ -6,7 +6,7 @@
   "license": "Apache Version 2.0",
   "author": "Google Inc.",
   "engines": {
-    "node": "~6.0"
+    "node": "8.8.0"
   },
   "scripts": {
     "start": "node index"
@@ -15,12 +15,12 @@
       "body-parser": "^1.17.2",
       "express": "^4.15.3",
       "request":"^2.83.0",
-      "nodemailer":"latest",
-      "node-json2html":"latest",
-      "ws":"latest",
-      "actions-on-google":"latest",
-      "odata-client":"latest",
+      "nodemailer":"^4.4.1",
+      "node-json2html":"^1.1.1",
+      "ws":"^3.3.2",
+      "actions-on-google":"^1.6.1",
+      "odata-client":"^0.6.0",
       "fs":"latest",
-      "quiche":"latest"
+      "quiche":"^0.3.0"
 }
 }
