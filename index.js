@@ -33,6 +33,7 @@ app.post('/dashboard',function(request,response){
   // in fulfillment usally based on the corresponding intent.
   // See https://api.ai/docs/actions-and-parameters for more.
   let action = request.body.result.action;
+  let sLanguage = (request.body.lang)? request.body.lang : 'en';
   let requestOriginal = request.body.result.resolvedQuery;
   // Get the request source (Google Assistant, Slack, API, etc) and initialize DialogflowApp
    const requestSource = (request.body.originalRequest) ? request.body.originalRequest.source : undefined;
@@ -85,15 +86,41 @@ app.post('/dashboard',function(request,response){
       aResult.sort(customSort);
       switch (parameters['SalesCategory']) {
         case 'Country':
-          responseJson.speech = 'In ' + iYear + ',' + aResult[0].Country + ',' + aResult[1].Country + ', and ' + aResult[2].Country +
+        switch (sLanguage) {
+          case "en":
+            responseJson.speech = 'In ' + iYear + ',' + aResult[0].Country + ',' + aResult[1].Country + ', and ' + aResult[2].Country +
                                 ' are the top three countries in sales';
+            break;
+          case "ko":
+          responseJson.speech = iYear+'년도에는 '+ aResult[0].Country + ',' + aResult[1].Country + ', 그리고 ' + aResult[2].Country +
+                                '가 매출 기준 상위 3개 국가입니다.';
+          break;
+          default:
+		   responseJson.speech = 'In ' + iYear + ',' + aResult[0].Country + ',' + aResult[1].Country + ', and ' + aResult[2].Country +
+                                ' are the top three countries in sales';
+            break;
+
+        }
+
           responseJson.displayText = responseJson.speech; // displayed response
 
           break;
         case 'Category':
-          responseJson.speech = 'In ' + iYear + ',' + aResult[0].Category + ',' + aResult[1].Category + ' and ' + aResult[2].Category +
+		 switch (sLanguage) {
+		   case "en":
+            responseJson.speech = 'In ' + iYear + ',' + aResult[0].Category + ',' + aResult[1].Category + ' and ' + aResult[2].Category +
                                 ' are the top three categories in sales';
-           responseJson.displayText = responseJson.speech; // displayed response
+            break;
+          case "ko":
+            responseJson.speech = iYear+'년도에는 '+ aResult[0].Category + ',' + aResult[1].Category + ', 그리고 ' + aResult[2].Category +
+                                '가 매출 기준 상위 3개 카테고리입니다.';
+          break;
+          default:
+		  responseJson.speech = 'In ' + iYear + ',' + aResult[0].Category + ',' + aResult[1].Category + ' and ' + aResult[2].Category +
+                                ' are the top three categories in sales';
+            break;
+		 }          
+          responseJson.displayText = responseJson.speech; // displayed response
           break;
         case 'Product':
            responseJson.speech = 'In ' + iYear + ',' + aResult[0].Product + ',' + aResult[1].Product + ' and ' + aResult[2].Product +
@@ -102,7 +129,7 @@ app.post('/dashboard',function(request,response){
           break;
         default:
       }
-      if (requestSource === googleAssistantRequest) {        
+      if (requestSource === googleAssistantRequest) {
         sendGoogleResponse(responseJson); // Send simple response to user
       } else {
         // responseJson.speech = 'Year is '+ parameters['Year'] + 'Sales Category is '+ parameters['SalesCategory'] ; // spoken response
