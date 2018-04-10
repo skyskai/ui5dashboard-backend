@@ -20,7 +20,7 @@ const aManagers = JSON.parse(sManager);
 app.use(bodyParser.json())
 app.set('port', (process.env.PORT || 5000))
 //20. WebSocket
-var url = "wss://ui5websocket.cfapps.eu10.hana.ondemand.com";
+var url = "wss://ui5websocket.herokuapp.com/";
 var ws = new WebSocket(url);
 //30. 요청 처리
 app.post('/dashboard',function(request,response){
@@ -119,7 +119,7 @@ app.post('/dashboard',function(request,response){
 		  responseJson.speech = 'In ' + iYear + ',' + aResult[0].Category + ',' + aResult[1].Category + ' and ' + aResult[2].Category +
                                 ' are the top three categories in sales';
             break;
-		 }          
+		 }
           responseJson.displayText = responseJson.speech; // displayed response
           break;
         case 'Product':
