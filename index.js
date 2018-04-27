@@ -20,7 +20,7 @@ const aManagers = JSON.parse(sManager);
 app.use(bodyParser.json())
 app.set('port', (process.env.PORT || 5000))
 //20. WebSocket
-var url = "wss://ui5websocket.herokuapp.com/";
+var url = "wss://ui5websocket.cfapps.eu10.hana.ondemand.com/";
 var ws = new WebSocket(url);
 //30. 요청 처리
 app.post('/dashboard',function(request,response){
@@ -182,13 +182,13 @@ app.post('/dashboard',function(request,response){
       switch (sLanguage) {
         case "en":
           responseJson.speech = 'The manager is ' + sManager + ' an employee of SAMSUNG SDS.';
-        break;
-        case 'ko':
-        responseJson.speech = '담당자는 삼성 SDS직원 ' + sManager + '입니다.';
-        break;
+           break;
+        case "ko":
+           responseJson.speech = '담당자는 삼성 SDS직원 ' + sManager + '입니다.';
+           break;
         default:
-        responseJson.speech = 'The manager is ' + sManager + ' an employee of SAMSUNG SDS.';
-        break;
+           responseJson.speech = 'The manager is ' + sManager + ' an employee of SAMSUNG SDS.';
+           break;
       }
       responseJson.displayText = responseJson.speech;
         if (requestSource === googleAssistantRequest) {
@@ -231,15 +231,14 @@ app.post('/dashboard',function(request,response){
      responseJson.forUIRequest = requestOriginal;
      switch (sLanguage) {
        case "en":
-      responseJson.speech = 'Email sent to the manager ' + oManager.Name;
-       break;
-       case 'ko':
-       responseJson.speech = '담당자' + oManager.Name + '에게 메일을 전송했습니다.';
-
-       break;
+          responseJson.speech = 'Email sent to the manager ' + oManager.Name;
+          break;
+       case "ko":
+          responseJson.speech = '담당자' + oManager.Name + '에게 메일을 전송했습니다.';
+          break;
        default:
-        responseJson.speech = 'Email sent to the manager ' + oManager.Name;
-       break;
+          responseJson.speech = 'Email sent to the manager ' + oManager.Name;
+          break;
      }
 
      responseJson.displayText = responseJson.speech;
