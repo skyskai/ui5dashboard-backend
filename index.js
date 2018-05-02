@@ -20,7 +20,7 @@ const aManagers = JSON.parse(sManager);
 app.use(bodyParser.json())
 app.set('port', (process.env.PORT || 5000))
 //20. WebSocket
-var url = "wss://ui5websocket.herokuapp.com/";
+var url = "wss://ui5websocket.cfapps.eu10.hana.ondemand.com/";
 var ws = new WebSocket(url);
 //30. 요청 처리
 app.post('/dashboard',function(request,response){
