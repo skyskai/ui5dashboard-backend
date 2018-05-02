@@ -20,7 +20,7 @@ const aManagers = JSON.parse(sManager);
 app.use(bodyParser.json())
 app.set('port', (process.env.PORT || 5000))
 //20. WebSocket
-var url = "wss://ui5websocket.cfapps.eu10.hana.ondemand.com/";
+var url = "wss://ui5websocket.cfapps.eu10.hana.ondemand.com";
 var ws = new WebSocket(url);
 //30. 요청 처리
 app.post('/dashboard',function(request,response){
@@ -54,17 +54,7 @@ app.post('/dashboard',function(request,response){
       let forUIresults = {"Action":"input.DetailCategory","Parameters":{"CategoryName":parameters['CategoryName']}};
       responseJson.forUIresults = JSON.stringify(forUIresults);
       responseJson.forUIRequest = requestOriginal;
-      switch (sLanguage) {
-        case "en":
-          responseJson.speech = "Ok, I have sent the picture of " + parameters['CategoryName'] + ' to your screen';
-          break;
-        case "ko":
-          responseJson.speech = parameters['CategoryName'] + '의 사진을 대시보드 화면으로 전송했습니다.';
-          break;
-        default:
-          responseJson.speech = "Ok, I have sent the picture of " + parameters['CategoryName'] + ' to your screen';
-          break;
-      }
+      responseJson.speech = "Ok, I have sent the picture of " + parameters['CategoryName'] + ' to your screen';
       responseJson.displayText = responseJson.speech;
       if (requestSource === googleAssistantRequest) {
         sendGoogleResponse(responseJson);
@@ -133,20 +123,8 @@ app.post('/dashboard',function(request,response){
           responseJson.displayText = responseJson.speech; // displayed response
           break;
         case 'Product':
-        switch (sLanguage) {
-          case "en":
            responseJson.speech = 'In ' + iYear + ',' + aResult[0].Product + ',' + aResult[1].Product + ' and ' + aResult[2].Product +
                                  ' are the top three products in sales';
-           break;
-          case "ko":
-          responseJson.speech = iYear+'년도에는' + ',' + aResult[0].Product + ',' + aResult[1].Product + ' 그리고 ' + aResult[2].Product +
-                                '가 매출 기준 상위 3개 제품입니다.';
-          break;
-          default:
-          responseJson.speech = 'In ' + iYear + ',' + aResult[0].Product + ',' + aResult[1].Product + ' and ' + aResult[2].Product +
-                                ' are the top three products in sales';
-          break;
-        }
            responseJson.displayText = responseJson.speech; // displayed response
           break;
         default:
@@ -179,17 +157,7 @@ app.post('/dashboard',function(request,response){
       }
       responseJson.forUIresults = JSON.stringify(forUIresults);
       responseJson.forUIRequest = requestOriginal;
-      switch (sLanguage) {
-        case "en":
-          responseJson.speech = 'The manager is ' + sManager + ' an employee of SAMSUNG SDS.';
-           break;
-        case "ko":
-           responseJson.speech = '담당자는 삼성 SDS직원 ' + sManager + '입니다.';
-           break;
-        default:
-           responseJson.speech = 'The manager is ' + sManager + ' an employee of SAMSUNG SDS.';
-           break;
-      }
+      responseJson.speech = 'The manager is ' + sManager + ' an employee of SAMSUNG SDS.';
       responseJson.displayText = responseJson.speech;
         if (requestSource === googleAssistantRequest) {
           sendGoogleResponse(responseJson); // Send simple response to user
@@ -229,18 +197,7 @@ app.post('/dashboard',function(request,response){
      }
      responseJson.forUIresults = JSON.stringify(forUIresults);
      responseJson.forUIRequest = requestOriginal;
-     switch (sLanguage) {
-       case "en":
-          responseJson.speech = 'Email sent to the manager ' + oManager.Name;
-          break;
-       case "ko":
-          responseJson.speech = '담당자' + oManager.Name + '에게 메일을 전송했습니다.';
-          break;
-       default:
-          responseJson.speech = 'Email sent to the manager ' + oManager.Name;
-          break;
-     }
-
+     responseJson.speech = 'Email sent to the manager ' + oManager.Name;
      responseJson.displayText = responseJson.speech;
 
 
