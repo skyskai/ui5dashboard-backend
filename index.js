@@ -22,6 +22,35 @@ app.set('port', (process.env.PORT || 5000))
 //20. WebSocket
 var url = "wss://ui5websocket.cfapps.eu10.hana.ondemand.com/";
 var ws = new WebSocket(url);
+//25. 카카오톡 플러스 친구 start
+// app.get('/keyboard',function(req,res){ // setting keyboard for first open
+//   let keyboard = {
+//     "type" : "text"
+//     /*
+//     or button, like this
+//     "type" : "buttons",
+//     "buttons" : ["btn 1", "btn 2", "btn 3"]
+//     */
+//   };
+//   res.send(keyboard);
+// });
+//
+// app.post('/message', function(request,response){
+//   let user_key = decodeURIComponent(request.body.user_key); // user's key
+//   let type = decodeURIComponent(request.body.type); // message type
+//   let content = decodeURIComponent(request.body.content); // user's message
+//   console.log(user_key);
+//   console.log(type);
+//   console.log(content);
+//
+//   let answer = {
+//     "message":{
+//       "text":"your message is arrieved server : "+content // in case 'text'
+//     }
+//   }
+//   res.send(answer);
+// });
+//25. 카카오톡 플러스 친구 end
 //30. 요청 처리
 app.post('/dashboard',function(request,response){
   // Log the request header and body coming from API.AI to help debug issues.
@@ -66,6 +95,7 @@ app.post('/dashboard',function(request,response){
           break;
       }
       responseJson.displayText = responseJson.speech;
+
       if (requestSource === googleAssistantRequest) {
         sendGoogleResponse(responseJson);
       } else {
@@ -131,6 +161,7 @@ app.post('/dashboard',function(request,response){
             break;
 		 }
           responseJson.displayText = responseJson.speech; // displayed response
+
           break;
         case 'Product':
         switch (sLanguage) {
@@ -148,6 +179,7 @@ app.post('/dashboard',function(request,response){
           break;
         }
            responseJson.displayText = responseJson.speech; // displayed response
+
           break;
         default:
       }
