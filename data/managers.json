@@ -1,106 +1,127 @@
 [{
    "Country": "Austria",
    "Name": "Charles",
+   "NameKO":"양승철",
    "Email":"s.chul.yang@samsung.com"
  },
  {
     "Country": "Argentina",
     "Name": "Charles",
+    "NameKO":"양승철",
     "Email":"s.chul.yang@samsung.com"
   },
   {
      "Country": "Brazil",
      "Name": "Sniki jang",
+     "NameKO":"장신기",
      "Email":"sinki.jang@samsung.com"
    },
    {
       "Country": "Canada",
       "Name": "Charles",
+      "NameKO":"양승철",
       "Email":"s.chul.yang@samsung.com"
     },
      {
         "Country": "Mexico",
         "Name": "Charles",
+        "NameKO":"양승철",
         "Email":"s.chul.yang@samsung.com"
       },
       {
          "Country": "USA",
          "Name": "Charles",
+         "NameKO":"양승철",
          "Email":"s.chul.yang@samsung.com"
        },
        {
           "Country": "Venezuela",
           "Name": "Charles",
+          "NameKO":"양승철",
           "Email":"s.chul.yang@samsung.com"
         },
  {
    "Country": "Belgium",
    "Name": "Charles",
+   "NameKO":"양승철",
    "Email":"s.chul.yang@samsung.com"
   },
  {
    "Country": "Denmark",
    "Name": "Charles",
+   "NameKO":"양승철",
    "Email":"s.chul.yang@samsung.com"
  },
  {
    "Country": "Finland",
    "Name": "Chung he is big",
+   "NameKO":"정승환",
    "Email":"seung.chung@samsung.com"
  },
  {
    "Country": "France",
    "Name": "Chung he is big",
+   "NameKO":"정승환",
    "Email":"seung.chung@samsung.com"
  },
  {
    "Country": "Germany",
    "Name": "Chung he is big",
+   "NameKO":"정승환",
    "Email":"seung.chung@samsung.com"
  },
  {
    "Country": "Ireland",
    "Name": "Yee Jeong Han group jjang",
+   "NameKO":"이종환",
    "Email":"avlapia@samsung.com"
  },
  {
    "Country": "Italy",
    "Name": "Yee Jeong Han group jjang",
+   "NameKO":"이종환",
    "Email":"avlapia@samsung.com"
  },
  {
    "Country": "Norway",
    "Name": "Yee Jeong Han group jjang",
+   "NameKO":"이종환",
    "Email":"avlapia@samsung.com"
  },
  {
    "Country": "Poland",
    "Name": "Yee Jeong Han group jjang",
+   "NameKO":"이종환",
    "Email":"avlapia@samsung.com"
  },
  {
    "Country": "Portugal",
    "Name": "Cindy",
+   "NameKO":"원유정",
    "Email":"yujeong0.won@samsung.com"
  },
  {
    "Country": "Spain",
    "Name": "Cindy",
+   "NameKO":"원유정",
    "Email":"yujeong0.won@samsung.com"
  },
  {
    "Country": "Sweden",
    "Name": "Cindy",
+   "NameKO":"원유정",
    "Email":"yujeong0.won@samsung.com"
  },
  {
    "Country": "Switzerland",
    "Name": "Sinki",
+   "NameKO":"장신기",
    "Email":"sinki.jang@samsung.com"
  },
  {
    "Country": "UK",
    "Name": "Sinki",
+   "NameKO":"장신기",
    "Email":"sinki.jang@samsung.com"
  }
 ]

@@ -1054,504 +1054,432 @@
  {
    "Year": 2018,
    "Product": "Côte de Blaye",
-   "ProductKO": "에틸렌",
    "Amount": 14756,
    "Currency": "USD"
  },
  {
    "Year": 2018,
    "Product": "Steeleye Stout",
-"ProductKO": "프로필렌",
    "Amount": 3024,
    "Currency": "USD"
  },
  {
    "Year": 2018,
    "Product": "Ipoh Coffee",
-"ProductKO": "부타디엔",
    "Amount": 2907.2,
    "Currency": "USD"
  },
  {
    "Year": 2018,
    "Product": "Chang",
-"ProductKO": "C4",
    "Amount": 2827.2,
    "Currency": "USD"
  },
  {
    "Year": 2018,
    "Product": "Chartreuse verte",
-"ProductKO": "벤젠",
    "Amount": 2044.8,
    "Currency": "USD"
  },
  {
    "Year": 2018,
-  "Product": "Chai",
-"ProductKO": "톨루엔",
+   "Product": "Chai",
    "Amount": 1800,
    "Currency": "USD"
  },
  {
    "Year": 2018,
-  "Product": "Outback Lager",
-"ProductKO": "쟈일렌",
+   "Product": "Outback Lager",
    "Amount": 1632,
    "Currency": "USD"
  },
  {
    "Year": 2018,
    "Product": "Sasquatch Ale",
-"ProductKO": "파라쟈일렌",
    "Amount": 1008,
    "Currency": "USD"
  },
  {
    "Year": 2018,
    "Product": "Lakkalikööri",
-"ProductKO": "스타이렌모노머",
    "Amount": 950.4,
    "Currency": "USD"
  },
  {
    "Year": 2018,
    "Product": "Rhönbräu Klosterbier",
-"ProductKO": "에틸벤젠",
    "Amount": 706.8,
    "Currency": "USD"
  },
  {
    "Year": 2018,
    "Product": "Guaraná Fantástica",
-"ProductKO": "모가스",
    "Amount": 504,
    "Currency": "USD"
  },
  {
    "Year": 2018,
    "Product": "Laughing Lumberjack Lager",
-"ProductKO": "디젤",
    "Amount": 56,
    "Currency": "USD"
  },
  {
    "Year": 1997,
    "Product": "Côte de Blaye",
-"ProductKO": "에틸렌",
    "Amount": 14229,
    "Currency": "USD"
  },
  {
    "Year": 1997,
    "Product": "Ipoh Coffee",
-"ProductKO": "부타디엔",
    "Amount": 4802.4,
    "Currency": "USD"
  },
  {
    "Year": 1997,
    "Product": "Rhönbräu Klosterbier",
-"ProductKO": "에틸벤젠",
    "Amount": 3713.8,
    "Currency": "USD"
  },
  {
    "Year": 1997,
    "Product": "Lakkalikööri",
-"ProductKO": "스타이렌모노머",
    "Amount": 3693.6,
    "Currency": "USD"
  },
  {
    "Year": 1997,
    "Product": "Chang",
-"ProductKO": "C4",
    "Amount": 3686,
    "Currency": "USD"
  },
  {
    "Year": 1997,
-  "Product": "Chai",
-"ProductKO": "톨루엔",
+   "Product": "Chai",
    "Amount": 3387.6,
    "Currency": "USD"
  },
  {
    "Year": 1997,
-  "Product": "Outback Lager",
-"ProductKO": "쟈일렌",
+   "Product": "Outback Lager",
    "Amount": 3369,
    "Currency": "USD"
  },
  {
    "Year": 1997,
    "Product": "Steeleye Stout",
-"ProductKO": "프로필렌",
    "Amount": 3060,
    "Currency": "USD"
  },
  {
    "Year": 1997,
    "Product": "Chartreuse verte",
-"ProductKO": "벤젠",
    "Amount": 1994.4,
    "Currency": "USD"
  },
  {
    "Year": 1997,
    "Product": "Guaraná Fantástica",
-"ProductKO": "모가스",
    "Amount": 1206,
    "Currency": "USD"
  },
  {
    "Year": 1997,
    "Product": "Laughing Lumberjack Lager",
-"ProductKO": "디젤",
    "Amount": 910,
    "Currency": "USD"
  },
  {
    "Year": 1997,
    "Product": "Sasquatch Ale",
-"ProductKO": "파라쟈일렌",
    "Amount": 812,
    "Currency": "USD"
  },
  {
    "Year": 1998,
    "Product": "Côte de Blaye",
-"ProductKO": "에틸렌",
    "Amount": 56652.5,
    "Currency": "USD"
  },
  {
    "Year": 1998,
    "Product": "Lakkalikööri",
-"ProductKO": "스타이렌모노머",
    "Amount": 5688,
    "Currency": "USD"
  },
  {
    "Year": 1998,
    "Product": "Chartreuse verte",
-"ProductKO": "벤젠",
    "Amount": 4248,
    "Currency": "USD"
  },
  {
    "Year": 1998,
    "Product": "Ipoh Coffee",
-"ProductKO": "부타디엔",
    "Amount": 3726,
    "Currency": "USD"
  },
  {
    "Year": 1998,
    "Product": "Sasquatch Ale",
-"ProductKO": "파라쟈일렌",
    "Amount": 3290,
    "Currency": "USD"
  },
  {
    "Year": 1998,
    "Product": "Chang",
-"ProductKO": "C4",
    "Amount": 3040,
    "Currency": "USD"
  },
  {
    "Year": 1998,
    "Product": "Rhönbräu Klosterbier",
-"ProductKO": "에틸벤젠",
    "Amount": 2906.25,
    "Currency": "USD"
  },
  {
    "Year": 1998,
-  "Product": "Chai",
-"ProductKO": "톨루엔",
+   "Product": "Chai",
    "Amount": 2628,
    "Currency": "USD"
  },
  {
    "Year": 1998,
    "Product": "Steeleye Stout",
-"ProductKO": "프로필렌",
    "Amount": 2466,
    "Currency": "USD"
  },
  {
    "Year": 1998,
-  "Product": "Outback Lager",
-"ProductKO": "쟈일렌",
+   "Product": "Outback Lager",
    "Amount": 2235,
    "Currency": "USD"
  },
  {
    "Year": 1998,
    "Product": "Guaraná Fantástica",
-"ProductKO": "모가스",
    "Amount": 1579.5,
    "Currency": "USD"
  },
  {
    "Year": 1998,
    "Product": "Laughing Lumberjack Lager",
-"ProductKO": "디젤",
    "Amount": 770,
    "Currency": "USD"
  },
  {
    "Year": 2015,
    "Product": "Côte de Blaye",
-"ProductKO": "에틸렌",
    "Amount": 14756,
    "Currency": "USD"
  },
  {
    "Year": 2015,
    "Product": "Steeleye Stout",
-"ProductKO": "프로필렌",
    "Amount": 3024,
    "Currency": "USD"
  },
  {
    "Year": 2015,
    "Product": "Ipoh Coffee",
-"ProductKO": "부타디엔",
    "Amount": 2907.2,
    "Currency": "USD"
  },
  {
    "Year": 2015,
    "Product": "Chang",
-"ProductKO": "C4",
    "Amount": 2827.2,
    "Currency": "USD"
  },
  {
    "Year": 2015,
    "Product": "Chartreuse verte",
-"ProductKO": "벤젠",
    "Amount": 2044.8,
    "Currency": "USD"
  },
  {
    "Year": 2015,
-  "Product": "Chai",
-"ProductKO": "톨루엔",
+   "Product": "Chai",
    "Amount": 1800,
    "Currency": "USD"
  },
  {
    "Year": 2015,
-  "Product": "Outback Lager",
-"ProductKO": "쟈일렌",
+   "Product": "Outback Lager",
    "Amount": 1632,
    "Currency": "USD"
  },
  {
    "Year": 2015,
    "Product": "Sasquatch Ale",
-"ProductKO": "파라쟈일렌",
    "Amount": 1008,
    "Currency": "USD"
  },
  {
    "Year": 2015,
    "Product": "Lakkalikööri",
-"ProductKO": "스타이렌모노머",
    "Amount": 950.4,
    "Currency": "USD"
  },
  {
    "Year": 2015,
    "Product": "Rhönbräu Klosterbier",
-"ProductKO": "에틸벤젠",
    "Amount": 706.8,
    "Currency": "USD"
  },
  {
    "Year": 2015,
    "Product": "Guaraná Fantástica",
-"ProductKO": "모가스",
    "Amount": 504,
    "Currency": "USD"
  },
  {
    "Year": 2015,
    "Product": "Laughing Lumberjack Lager",
-"ProductKO": "디젤",
    "Amount": 56,
    "Currency": "USD"
  },
  {
    "Year": 2016,
    "Product": "Côte de Blaye",
-"ProductKO": "에틸렌",
    "Amount": 14229,
    "Currency": "USD"
  },
  {
    "Year": 2016,
    "Product": "Ipoh Coffee",
-"ProductKO": "부타디엔",
    "Amount": 4802.4,
    "Currency": "USD"
  },
  {
    "Year": 2016,
    "Product": "Rhönbräu Klosterbier",
-"ProductKO": "에틸벤젠",
    "Amount": 3713.8,
    "Currency": "USD"
  },
  {
    "Year": 2016,
    "Product": "Lakkalikööri",
-"ProductKO": "스타이렌모노머",
    "Amount": 3693.6,
    "Currency": "USD"
  },
  {
    "Year": 2016,
    "Product": "Chang",
-"ProductKO": "C4",
    "Amount": 3686,
    "Currency": "USD"
  },
  {
    "Year": 2016,
-  "Product": "Chai",
-"ProductKO": "톨루엔",
+   "Product": "Chai",
    "Amount": 3387.6,
    "Currency": "USD"
  },
  {
    "Year": 2016,
-  "Product": "Outback Lager",
-"ProductKO": "쟈일렌",
+   "Product": "Outback Lager",
    "Amount": 3369,
    "Currency": "USD"
  },
  {
    "Year": 2016,
    "Product": "Steeleye Stout",
-"ProductKO": "프로필렌",
    "Amount": 3060,
    "Currency": "USD"
  },
  {
    "Year": 2016,
    "Product": "Chartreuse verte",
-"ProductKO": "벤젠",
    "Amount": 1994.4,
    "Currency": "USD"
  },
  {
    "Year": 2016,
    "Product": "Guaraná Fantástica",
-"ProductKO": "모가스",
    "Amount": 1206,
    "Currency": "USD"
  },
  {
    "Year": 2016,
    "Product": "Laughing Lumberjack Lager",
-"ProductKO": "디젤",
    "Amount": 910,
    "Currency": "USD"
  },
  {
    "Year": 2016,
    "Product": "Sasquatch Ale",
-"ProductKO": "파라쟈일렌",
    "Amount": 812,
    "Currency": "USD"
  },
  {
    "Year": 2017,
    "Product": "Côte de Blaye",
-"ProductKO": "에틸렌",
    "Amount": 56652.5,
    "Currency": "USD"
  },
  {
    "Year": 2017,
    "Product": "Lakkalikööri",
-"ProductKO": "스타이렌모노머",
    "Amount": 5688,
    "Currency": "USD"
  },
  {
    "Year": 2017,
    "Product": "Chartreuse verte",
-"ProductKO": "벤젠",
    "Amount": 4248,
    "Currency": "USD"
  },
  {
    "Year": 2017,
    "Product": "Ipoh Coffee",
-"ProductKO": "부타디엔",
    "Amount": 3726,
    "Currency": "USD"
  },
  {
    "Year": 2017,
    "Product": "Sasquatch Ale",
-"ProductKO": "파라쟈일렌",
    "Amount": 3290,
    "Currency": "USD"
  },
  {
    "Year": 2017,
    "Product": "Chang",
-"ProductKO": "C4",
    "Amount": 3040,
    "Currency": "USD"
  },
  {
    "Year": 2017,
    "Product": "Rhönbräu Klosterbier",
-"ProductKO": "에틸벤젠",
    "Amount": 2906.25,
    "Currency": "USD"
  },
  {
    "Year": 2017,
-  "Product": "Chai",
-"ProductKO": "톨루엔",
+   "Product": "Chai",
    "Amount": 2628,
    "Currency": "USD"
  },
  {
    "Year": 2017,
    "Product": "Steeleye Stout",
-"ProductKO": "프로필렌",
    "Amount": 2466,
    "Currency": "USD"
  },
  {
    "Year": 2017,
-  "Product": "Outback Lager",
-"ProductKO": "쟈일렌",
+   "Product": "Outback Lager",
    "Amount": 2235,
    "Currency": "USD"
  },
  {
    "Year": 2017,
    "Product": "Guaraná Fantástica",
-"ProductKO": "모가스",
    "Amount": 1579.5,
    "Currency": "USD"
  },
  {
    "Year": 2017,
    "Product": "Laughing Lumberjack Lager",
-"ProductKO": "디젤",
    "Amount": 770,
    "Currency": "USD"
  }

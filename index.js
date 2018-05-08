@@ -139,7 +139,7 @@ app.post('/dashboard',function(request,response){
                                  ' are the top three products in sales';
            break;
           case "ko":
-          responseJson.speech = iYear+'년도에는' + ',' + aResult[0].Product + ',' + aResult[1].Product + ' 그리고 ' + aResult[2].Product +
+          responseJson.speech = iYear+'년도에는' + ',' + aResult[0].ProductKO + ',' + aResult[1].ProductKO + ' 그리고 ' + aResult[2].ProductKO +
                                 '가 매출 기준 상위 3개 제품입니다.';
           break;
           default:
@@ -173,7 +173,11 @@ app.post('/dashboard',function(request,response){
       //나라만 담당자를 db(파일)에서 찾아서 리턴, 그외에는 그냥 Charles를 리턴
       if(sCountryName){
         let oManager = aManagers.find(o => o.Country === sCountryName);
+        if(sLanguage==="ko"){
+          sManager = oManager.NameKO;
+        } else  {
         sManager = oManager.Name;
+        }
       } else {
         sManager = 'Charles'
       }
