@@ -152,7 +152,7 @@ app.post('/dashboard',function(request,response){
                                 ' are the top three categories in sales';
             break;
           case "ko":
-            responseJson.speech = iYear+'년도에는 '+ aResult[0].Category + ',' + aResult[1].Category + ', 그리고 ' + aResult[2].Category +
+            responseJson.speech = iYear+'년도에는 '+ aResult[0].CategoryKO + ',' + aResult[1].CategoryKO + ', 그리고 ' + aResult[2].CategoryKO +
                                 '가 매출 기준 상위 3개 카테고리입니다.';
           break;
           default:
@@ -170,7 +170,7 @@ app.post('/dashboard',function(request,response){
                                  ' are the top three products in sales';
            break;
           case "ko":
-          responseJson.speech = iYear+'년도에는' + ',' + aResult[0].ProductKO + ',' + aResult[1].ProductKO + ' 그리고 ' + aResult[2].ProductKO +
+          responseJson.speech = iYear+'년도에는 ' + aResult[0].ProductKO + ',' + aResult[1].ProductKO + ' 그리고 ' + aResult[2].ProductKO +
                                 '가 매출 기준 상위 3개 제품입니다.';
           break;
           default:
