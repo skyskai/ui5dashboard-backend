@@ -295,16 +295,23 @@ app.post('/dashboard',function(request,response){
    //두개 년도를 비교
    'input.CountryCompare':() =>{
      let aResult;
-     let aYearBetween = parameters['Year_Between'].split('-');//영어일 경우 여기에 한국어일 경우 aYearBetween_ko에
+
      /* let aYearBetween_ko = parameters['Year_Between_ko'];//["1996년","1998년"]; */
      let iYearFrom = 0;
      let iYearTo = 0;
-   /*   if(aYearBetween_ko.length>0){
-        iYearFrom = aYearBetween_ko[0].substring(0,4) * 1;
-        iYearTo = aYearBetween[1].substring(0,4) * 1
-     } else { */
-       iYearFrom = aYearBetween[0] * 1;
-       iYearTo = aYearBetween[2].split('/')[1] * 1;
+     switch (sLanguage) {
+       case "en":
+        let aYearBetween = parameters['Year_Between'].split('-');//영어일 경우 여기에 한국어일 경우 aYearBetween_ko에
+        iYearFrom = aYearBetween[0] * 1;
+        iYearTo = aYearBetween[2].split('/')[1] * 1;
+       break;
+       case "ko"://Year_Between, date-period에 값이 입력 됨.
+         iYearFrom = parameters['Year_Between'].substring(0,4);
+         iYearTo = parameters['date-period'].substring(0,4);
+       break;
+       default:
+       break;
+     }
      /* } */
 
      let sCountryName = parameters['CountryName'];
