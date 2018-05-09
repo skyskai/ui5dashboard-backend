@@ -299,24 +299,29 @@ app.post('/dashboard',function(request,response){
      /* let aYearBetween_ko = parameters['Year_Between_ko'];//["1996년","1998년"]; */
      let iYearFrom = 0;
      let iYearTo = 0;
+     let aYearBetween = "";
      switch (sLanguage) {
        case "en":
-        let aYearBetween = parameters['Year_Between'].split('-');//영어일 경우 여기에 한국어일 경우 aYearBetween_ko에
+        aYearBetween = parameters['Year_Between'].split('-');//영어일 경우 여기에 한국어일 경우 aYearBetween_ko에
         iYearFrom = aYearBetween[0] * 1;
         iYearTo = aYearBetween[2].split('/')[1] * 1;
        break;
        case "ko"://Year_Between, date-period에 값이 입력 됨.
-         iYearFrom = parameters['Year_Between'].substring(0,4);
-         iYearTo = parameters['date-period'].substring(0,4);
+         iYearFrom = parameters['Year_Between'].substring(0,4) * 1;
+         iYearTo = parameters['date-period'].substring(0,4)  * 1;
        break;
        default:
+         aYearBetween = parameters['Year_Between'].split('-');//영어일 경우 여기에 한국어일 경우 aYearBetween_ko에
+         iYearFrom = aYearBetween[0] * 1;
+         iYearTo = aYearBetween[2].split('/')[1] * 1;
        break;
      }
      /* } */
-
+      //
      let sCountryName = parameters['CountryName'];
      let forUIresults = {"Action":"input.CountryCompare","Parameters":{"YearFrom":iYearFrom,"YearTo":iYearTo,"CountryName":sCountryName}};
-
+    //console.log();
+    console.log(forUIresults);
      //비교할 값을 읽어서 각각 oResultFrom, oResultTo에 넣음.
      const fnFilterCountry = function(aList,sCountryName){
                         let oFound = aList.filter(function(obj){
@@ -339,12 +344,27 @@ app.post('/dashboard',function(request,response){
       let oResultFrom = fnFilterCountry(getDataByYear(aSales.SalesByCountry,iYearFrom),sCountryName)[0];
       let oResultTo = fnFilterCountry(getDataByYear(aSales.SalesByCountry,iYearTo),sCountryName)[0];
       let iGapTo_From = ( oResultTo.Amount - oResultFrom.Amount ).toFixed(2);
-      const sResultPre = 'In ' + oResultTo.Year + ' the sales of ' + oResultTo.Country + ' has ';
-      if(iGapTo_From < 0){//감소
-        responseJson.speech = sResultPre + ' decreased about $'+ iGapTo_From * -1 + ' compared to in '+oResultFrom.Year;
-      } else  {
-        responseJson.speech = sResultPre + ' increased about $'+ iGapTo_From + ' compared to in '+oResultFrom.Year;
+      let sResultPre = '';
+      switch (sLanguage) {
+        case "en":
+        default:
+            sResultPre = 'In ' + oResultTo.Year + ' the sales of ' + oResultTo.Country + ' has ';
+            if(iGapTo_From < 0){//감소
+              responseJson.speech = sResultPre + ' decreased about $'+ iGapTo_From * -1 + ' compared to in '+oResultFrom.Year;
+            } else  {
+              responseJson.speech = sResultPre + ' increased about $'+ iGapTo_From + ' compared to in '+oResultFrom.Year;
+            };
+        break;
+        case "ko":
+            sResultPre = oResultTo.Year + '년에 ' + oResultTo.Country + '의 매출은 ';
+            if(iGapTo_From < 0){//감소
+              responseJson.speech = sResultPre + oResultFrom.Year+ '년 대비 ' + iGapTo_From * -1 + '$가 감소했습니다.';
+            } else  {
+              responseJson.speech = sResultPre + oResultFrom.Year+ '년 대비 ' + iGapTo_From + '$가 증가했습니다.';
+            };
+        break;
       }
+
        responseJson.displayText = responseJson.speech;
     }
      sendResponse(responseJson);
