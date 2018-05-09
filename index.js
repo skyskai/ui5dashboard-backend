@@ -306,9 +306,9 @@ app.post('/dashboard',function(request,response){
         iYearFrom = aYearBetween[0] * 1;
         iYearTo = aYearBetween[2].split('/')[1] * 1;
        break;
-       case "ko"://Year_Between, date-period에 값이 입력 됨.
+       case "ko"://Year_Between, date-YearTo 값이 입력 됨.
          iYearFrom = parameters['Year_Between'].substring(0,4) * 1;
-         iYearTo = parameters['date-period'].substring(0,4)  * 1;
+         iYearTo = parameters['YearTo'].substring(0,4)  * 1;
        break;
        default:
          aYearBetween = parameters['Year_Between'].split('-');//영어일 경우 여기에 한국어일 경우 aYearBetween_ko에
