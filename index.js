@@ -22,6 +22,18 @@ app.set('port', (process.env.PORT || 5000))
 //20. WebSocket
 var url = "wss://ui5websocket.cfapps.eu10.hana.ondemand.com/";
 var ws = new WebSocket(url);
+ws.on('message', function(message) {
+  console.log('Received: ' + message);
+});
+
+ws.on('close', function(code) {
+  console.log('Disconnected: ' + code);
+});
+
+ws.on('error', function(error) {
+  console.log('Error: ' + error.code);
+});
+
 //25. 카카오톡 플러스 친구 start
 // app.get('/keyboard',function(req,res){ // setting keyboard for first open
 //   let keyboard = {
@@ -436,7 +448,7 @@ app.post('/dashboard',function(request,response){
 
  // Map the action name to the correct action handler function and run the function
  actionHandlers[action]();
- //Websocket 서버에 전달
+
  sendResponseToWebsocket(responseJson);
 
  //리스트를 담당자에게 email보냄
@@ -564,17 +576,17 @@ app.post('/dashboard',function(request,response){
 	  ws.send(message);//, console.log.bind(null, 'Sent : ', message));
 	});
 
-	ws.on('message', function(message) {
-	  console.log('Received: ' + message);
-	});
-
-	ws.on('close', function(code) {
-	  console.log('Disconnected: ' + code);
-	});
-
-	ws.on('error', function(error) {
-	  console.log('Error: ' + error.code);
-	});
+	// ws.on('message', function(message) {
+	//   console.log('Received: ' + message);
+	// });
+  //
+	// ws.on('close', function(code) {
+	//   console.log('Disconnected: ' + code);
+	// });
+  //
+	// ws.on('error', function(error) {
+	//   console.log('Error: ' + error.code);
+	// });
  }
 //Country, Category, Product의 년도별 Sales
  function getDataByYear(aSales,iYear){
