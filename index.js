@@ -132,6 +132,7 @@ app.post('/dashboard',function(request,response){
           break;
         default:
       }
+      if(aResult===undefined){return;} //조건에 해당하는 데이터가 없을 경우 종료
       responseJson.forUIresults = JSON.stringify(forUIresults);
       responseJson.forUIRequest = requestOriginal;
 
@@ -275,6 +276,7 @@ app.post('/dashboard',function(request,response){
          break;
        default:
      }
+     if(aResult===undefined){return;} //조건에 해당하는 데이터가 없을 경우 종료
      responseJson.forUIresults = JSON.stringify(forUIresults);
      responseJson.forUIRequest = requestOriginal;
      switch (sLanguage) {
@@ -319,8 +321,10 @@ app.post('/dashboard',function(request,response){
         iYearTo = aYearBetween[2].split('/')[1] * 1;
        break;
        case "ko"://Year_Between, date-YearTo 값이 입력 됨.
+         // console.log("YEAR_BETWEEN:"+parameters['Year_Between']);
          iYearFrom = parameters['Year_Between'].substring(0,4) * 1;
-         iYearTo = parameters['YearTo'].substring(0,4)  * 1;
+         // console.log("YearTo:"+parameters['YearTo']);
+         iYearTo = parameters['YearTo'].substring(0,4) * 1;
        break;
        default:
          aYearBetween = parameters['Year_Between'].split('-');//영어일 경우 여기에 한국어일 경우 aYearBetween_ko에
@@ -353,8 +357,13 @@ app.post('/dashboard',function(request,response){
       responseJson.speech = 'Here are the sales for all the countries between '+ iYearFrom + ' and ' + iYearTo;
      responseJson.displayText = responseJson.speech;
     } else {
-      let oResultFrom = fnFilterCountry(getDataByYear(aSales.SalesByCountry,iYearFrom),sCountryName)[0];
-      let oResultTo = fnFilterCountry(getDataByYear(aSales.SalesByCountry,iYearTo),sCountryName)[0];
+      let aResultFrom = getDataByYear(aSales.SalesByCountry,iYearFrom);
+      if(aResultFrom===undefined){return;} //조건에 해당하는 데이터가 없을 경우 종료
+      let aResultTo = getDataByYear(aSales.SalesByCountry,iYearTo);
+      if(aResultTo===undefined){return;} //조건에 해당하는 데이터가 없을 경우 종료
+
+      let oResultFrom = fnFilterCountry(aResultFrom,sCountryName)[0];
+      let oResultTo = fnFilterCountry(aResultTo,sCountryName)[0];
       let iGapTo_From = ( oResultTo.Amount - oResultFrom.Amount ).toFixed(2);
       let sResultPre = '';
       switch (sLanguage) {
@@ -593,7 +602,21 @@ app.post('/dashboard',function(request,response){
  	let oFound = aSales.filter(function(obj){
              	if(obj.Year === iYear){
              		return obj;	}})
-   return oFound;
+
+    if(oFound.length>0){
+      return oFound;
+    } else {
+      responseJson.speech = "조건에 해당하는 데이터를 찾을 수 없습니다.";
+      responseJson.displayText  = responseJson.speech;
+      if (requestSource === googleAssistantRequest) {
+        sendGoogleResponse(responseJson); // Send simple response to user
+      } else {
+        sendResponse(responseJson);
+      }
+      //이후 프로세스 수행
+
+    }
+
  }
 
 // Function to send correctly formatted Google Assistant responses to Dialogflow which are then sent to the user
