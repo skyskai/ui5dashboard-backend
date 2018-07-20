@@ -20,7 +20,8 @@ const aManagers = JSON.parse(sManager);
 app.use(bodyParser.json())
 app.set('port', (process.env.PORT || 5000))
 //20. WebSocket
-var url = "wss://ui5websocket.cfapps.eu10.hana.ondemand.com/";
+// var url = "wss://ui5websocket.cfapps.eu10.hana.ondemand.com/";
+var url = "wss://websocketserverg51d19f20.jp1.hana.ondemand.com/WebSocketServer/endpoint/";
 var ws = new WebSocket(url);
 ws.on('message', function(message) {
   console.log('Received: ' + message);
