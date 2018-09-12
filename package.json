@@ -1,12 +1,11 @@
 {
   "name": "apiaiFirebaseFulfillment",
   "description": "This is the default fulfillment for a API.AI agents using Cloud Functions for Firebase",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.0.1",  
   "license": "Apache Version 2.0",
-  "author": "Google Inc.",
+  "author": "s.chul.yang@samsung.com",
   "engines": {
-    "node": "8.11.2"
+    "node": ">=8"
   },
   "scripts": {
     "start": "node index"
